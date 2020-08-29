@@ -31,6 +31,28 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+
+
+    # 3rd party
+    'colorfield',
+    'rest_framework',
+    'django_user_agents',
+
+    # own
+    'core',
+    'color',
+    'provider',
+    'category',
+    'productColor',
+    'productSize', 
+    'productImages',
+    'product',
+    'packingType',
+    'stock',
+
+
+
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -38,6 +60,19 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
+# django_user_agents implementation 
+# Cache backend is optional, but recommended to speed up user agent parsing
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+        'LOCATION': '127.0.0.1:11211',
+    }
+}
+# Name of cache backend to cache user agents. If it not specified default
+# cache alias will be used. Set to `None` to disable caching.
+USER_AGENTS_CACHE = 'default'
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -47,14 +82,19 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    # own
+    'django.middleware.locale.LocaleMiddleware',
+    'django_user_agents.middleware.UserAgentMiddleware',
 ]
+
 
 ROOT_URLCONF = 'begoodPlus.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'static_cdn','templates'),],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -117,4 +157,18 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
+
+
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR, 'locale')
+]
+
+
+STATIC_ROOT= os.path.join(BASE_DIR, "static") # when changed, change allso templates location
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static_cdn"),
+]
+
+MEDIA_URL= '/media/'
+MEDIA_ROOT = os.path.join(STATIC_ROOT, 'media_root/')
