@@ -25,7 +25,7 @@ SECRET_KEY = '#r*r40h()nfz(8duh2%98n2=2y$!7hd6law4t#_mkht3xafe(c'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'provider',
     'category',
     'productColor',
-    'productSize', 
+    'productSize',
     'productImages',
     'product',
     'packingType',
@@ -61,7 +61,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 ]
 
-# django_user_agents implementation 
+# django_user_agents implementation
 # Cache backend is optional, but recommended to speed up user agent parsing
 CACHES = {
     'default': {

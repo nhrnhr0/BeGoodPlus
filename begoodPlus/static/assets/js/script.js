@@ -1,207 +1,153 @@
+var all_products;
+$( document ).ready(function() {
+    $.ajax({
+        url: "products_select",
+        success: function(result) {
+            all_products = result.products;
 
-var mapAutocomplete = new google.maps.places.Autocomplete(document.getElementById("addres"))
-mapAutocomplete.setComponentRestrictions({'country': ['il']});
-
-google.maps.event.addListener(mapAutocomplete, 'place_changed', function () {
-  //document.getElementById('addres').value = near_place.name
-});
-
-$(document).on('change', '#addres', function (){
-
-});
-$(document).ready(function(){
-  $.ajax({url: "products_select", success: function(result) {
-    console.log(result);
-    products = result;
-    $('#magicsuggest').magicSuggest({
-        data: products,
-        allowFreeEntries: true,
-        cls: 'rtl-support',
-        maxSelection: 1,
-        useZebraStyle: true,
-        placeholder: 'הכנס מוצר',
-        style: "text-align:right;",
-        vregex: '', //<em.+>(.+)<\/em>
-        renderer: function(data){
-          
-            return `
-            <div class="text-right d-lg-flex d-xl-flex justify-content-lg-start align-items-lg-center align-items-xl-center"><img src="${data.image}" style="width: 50px;height: 50px;" />
-            <div style="padding-right: 15px;">
-              <p class="text-right d-xl-flex justify-content-xl-start align-items-xl-center"><strong class="d-lg-flex align-items-lg-start">${data.name}</strong></p>
-              
-            </div>
-            </div>
-            `
-            //<p class="d-lg-flex align-items-lg-end" style="font-size: 10px;">${data.content} </p>
-        },
-        selectionRenderer: function(data){
-          return  data.name;
-        },
-        /*width: function() {
-          return $(this).width();
-        },*/
-      }); // magicSuggest
-    }});
-  });
-
-//var $_searchQuery = $('#search-query');
-
-
-/*
-$.ajax({
-  url: 'products_select',
-  dataType: 'json',
-  success: function (data) {
-    products = data;
-    for(var i = 0; i < products.length; i++) {
-      products[i]["label"] = products[i]["name"]
-      products[i]["value"] = "" + products[i]["id"]
-
-    }
-    console.log(products);
-
-
-
-    $_searchQuery.autocomplete({
-      source: products,
-      appendTo: $('#search-suggestions')
-    });
-    $.ui.autocomplete.prototype._renderItem = function (ul, item) {
-      
-      
-        var re = new RegExp($.trim(this.term.toLowerCase()));
-        html = `<div id="${item.id} class="d-lg-flex justify-content-lg-center align-items-lg-center">
-        <img src="${item.image}" style="width: 50px;height: 50px;" />
-        <div>
-            <p>${item.name}</p><small>${item.content}</small></div>
-        </div>`;
-        var t = html.replace(re, "<span style='font-weight:600;color:#5C5C5C;'>" + $.trim(this.term.toLowerCase()) +
-            "</span>");
-        return $("<li style='list-style:none;'></li>")
-            .data("item.autocomplete", item)
-            .append("<a>" + t + "</a>")
-            .appendTo(ul);
-    };
-
-    $.extend($.ui.autocomplete.prototype.options, {
-      open: function(event, ui) {
-        $(this).autocomplete("widget").css({
-                "width": ($(this).width() + "px")
-            });
         }
     });
-  }
 });
-*/
-/*
-$.extend($.ui.autocomplete.prototype.options, {
-	open: function(event, ui) {
-		$(this).autocomplete("widget").css({
-            "width": ($(this).width() + "px")
-        });
+
+function generate_product_options(rowIndex, product) {
+    $("#selectedProductId_"+ rowIndex).val(product.id).trigger("change");
+                $("#catalogNumber_" + rowIndex).text(product.catalog).trigger("change");
+                $.ajax({
+                    url: "product_detail/" + product.id, 
+                success: function(result){
+                    ret = `<select name="size" id="size_select_${rowIndex}">`
+                    for(var size in result) {
+                        ret += `<option value="${size}">${size}</option>`
+                    }
+                    ret += `</select>`;
+                    $("#size_" + rowIndex).html(ret);
+    
+                    $('#size_select_' + rowIndex).on('change', function (e) {
+                        debugger;
+                        var valueSelected = this.value;
+                        var colors = result[valueSelected];
+    
+                        ret = `<select id="colorselector_${rowIndex}">`
+                        for(var col in colors) {
+                            ret += `<option value="${col}"  data-color="${colors[col].color}">${colors[col].cname} </option>`
+                        }
+                        ret += `</select>`
+                        $("#color_" + rowIndex).html(ret);
+                        $('#colorselector_' + rowIndex).colorselector();
+                    });
+    
+                    $('#size_select_' + rowIndex).trigger("change");
+                  }});
+}
+
+function onProductSelect(inputIndex, selectedProductId=null) {
+    var product = $("#productInput_" + inputIndex).getSelectedItemData();
+
+    // it's a copy and a original row so can't get selected data.
+    if(product == -1) { 
+        // in copys the product's id is embedded in a heddn field
+        console.log('copy from: ' + selectedProductId);
+        product = all_products.filter((product) => {return product.id == selectedProductId})[0];
     }
-});
-*/
 
-/*
-$(document).ready(function(){
-    $.ajax({
-      url: 'products_select',
-      dataType: 'json',
-      success: function (data) {
-        products = data;
-        console.log(data);
+    $("#productInput_" + inputIndex).prop('disabled', true);
+    generate_product_options(inputIndex, product);
+}
 
-        $('#productInp1').magicSuggest({
-          data: data,
-          allowFreeEntries: false,
-          cls: 'rtl-cls',
-          maxSelection: 1,
-          useZebraStyle: true,
-          placeholder: 'הכנס מוצר',
-          style: "width=0px",
-          vregex: '<strong.+>(.+)<\/strong>',
-          renderer: function(data){
-              return "<div class=\"text-right d-lg-flex d-xl-flex justify-content-lg-start align-items-lg-center align-items-xl-center\"><img style=\"width: 50px;height: 50px;\" src=\""+ data.image +"\">" +
-              "<div>" +
-                  "<p class=\"text-right d-xl-flex justify-content-xl-start align-items-xl-center\"><strong class=\"d-lg-flex align-items-lg-start\">"+ data.name +"</strong></p>" +
-                  "<p class=\"d-lg-flex align-items-lg-end\" style=\"font-size: 10px\">"+ data.content +"&nbsp;</p>" +
-              "</div>" +
-              "</div>";
-          },
-          selectionRenderer: function(data){
-            return  data.name;
-          }
-  
-      });
+function createProductInput(inputIndex) {
+    var options = {
+        url: function(phrase) {
+            console.log("products_select/" + phrase);
+            return "products_select/" + phrase;
+        },
+        listLocation: "products",
+        matchResponseProperty: "inputPhrase",
+        getValue: function(element) {
+            return element.name;
+        },
+        list: {
+            maxNumberOfElements: 30,
+            //onSelectItemEvent
+            onClickEvent: function() {
+                onProductSelect(inputIndex);
+            },
+        },
+    
+        template: {
+            type: "custom",
+            
+            method: function(value, item) {
+                return `<div class="d-lg-flex justify-content-lg-end"><img style="padding-left: 50px;" src="${item.image}" width="125px" height="75px" />
+                        <div>
+                            <h4>${value}</h4><span>${item.content.substring(0,100).padEnd(100)}</span></div>
+                        </div>`;
+            }
+        }
+    };
 
-      $('#productInp1 > div.ms-sel-ctn > input[type=text]').attr("style", "width=0px;");
+    $("#productInput_" + inputIndex).easyAutocomplete(options);
+}
 
-      }
+var _product_row_id_count = 0;
+function getProductRowIdProvider() {
+    return _product_row_id_count++;
+}
+
+var product_id = getProductRowIdProvider();
+createProductInput(product_id);
+
+
+function generate_row_markup(product_index) {
+    var markup =    `<tr>
+        <td><input id="productInput_${product_index}" class="form-control" type="text" dir="rtl" style="margin-left:0px;font-family:Roboto, sans-serif;" placeholder="הכנס מוצר"></td>
+        <td><div id="catalogNumber_${product_index}" ></div></td>
+        <td><div id="size_${product_index}"> </div> </td>
+        <td><div id="color_${product_index}"></div></td>
+        <td><input id="amount_${product_index}" type="number" min="1" max="9999" value="1" class="form-control" /></td>
+        <td>
+            <div dir="rtl" class="btn-group" role="group">
+                <button class="btn btn-ligth" id="dup_btn_${product_index}" name="dup_btn" value="${product_index}" style="border-radius: 0 !important;border: 1px solid black;" type="button"><i title="שכפל" class="fas fa-copy"></i></button>
+                <button class="btn btn-ligth" id="del_btn_${product_index}" name="del_btn" value="${product_index}" style="border-radius: 0 !important;border: 1px solid black;" type="button"><i title="מחק" class="far fa-trash-alt"></i></button>
+            </div>
+        </td>
+        <input id="selectedProductId_${product_index}" type="hidden" />
+    </tr>`
+    return markup;
+}
+
+
+function generate_new_row_table(product_index, insert_location) {
+    var markup =    generate_row_markup(product_index); // generate html of the row
+    insert_location.before(markup);
+
+    createProductInput(product_index);
+
+    $("#dup_btn_" + product_index).click(() => {
+        dup_product_index = getProductRowIdProvider();
+        generate_new_row_table(dup_product_index, $("#dup_btn_" + product_index).closest('tr'))
+
+        //markup = generate_row_markup(dup_product_index);
+        //$("#dup_btn_" + product_index).closest('tr').after(markup);
+        //createProductInput(dup_product_index);
+        var selectedProduct =   $("#productInput_" + product_index);
+        $("#productInput_" + dup_product_index).val(selectedProduct.val()); // copy the input text
+        onProductSelect(dup_product_index, $("#selectedProductId_" + product_index).val()); // trigger the selected product on the coyped row
+
     });
+
+    $("#del_btn_" + product_index).click(() => {
+        $("#del_btn_" + product_index).closest('tr').remove();
+    });
+
+}
+
+// create new table row for product
+$("#new_product_row_btn").click(()=> {
+    
+    console.log('new_product_row_btn clicked');
+    var product_index = getProductRowIdProvider(); // get uniqe id number for the row
+    
+
+    //var tr = $("#new_product_row_btn").closest('tr').before(markup);
+    generate_new_row_table(product_index,$("#new_product_row_btn").closest('tr'))
 });
-
-const search = document.getElementById('search');
-const matchList = document.getElementById('match-list')
-
-function searchProducts(searchText) {
-  console.log(products);
-  let matches = products.filter(function (product) {
-    const regex = new RegExp(`${searchText}`, 'gi');
-    return product.name.match(regex) || product.content.match(regex);
-  });
-
-  outputHtml(matches);
-}
-
-function outputHtml(matches) {
-  if(matches.length > 0) {
-    const html = matches.map(match => `
-    <div class="card" id="${match.id}" onClick="selectProduct(id)">
-    <div class="card-body d-lg-flex align-items-lg-right">
-        <div><img style="width: 50px;height: 50px;" src=${match.image}/></div>
-        <div style="">
-            <h4>${match.name}</h4>
-            <p>${match.content}</p>
-        </div>
-    </div>
-</div>
-    `).join('');
-    matchList.innerHTML = html;
-  }
-}
-
-function selectProduct(productId) {
-  console.log(productId);
-  product = products.filter((product) => {return product.id == productId;})[0];
-  console.log(product);
-
-  $('#search').val(product.name);
-  var event = new Event('input', {
-    bubbles: true,
-    cancelable: true,
-  });
-
-  search.dispatchEvent(event);
-}
-search.addEventListener('input', () => searchProducts(search.value));
-
-
-var $_searchQuery = $('#search-query');
-var mdata = ["india", "usa", "canada", "japan", "uk", "south africa"];
-
-$.ui.autocomplete.prototype._renderItem = function (ul, item) {
-    var re = new RegExp($.trim(this.term.toLowerCase()));
-    var t = item.label.replace(re, "<span style='font-weight:600;color:#5C5C5C;'>" + $.trim(this.term.toLowerCase()) +
-        "</span>");
-    return $("<li></li>")
-        .data("item.autocomplete", item)
-        .append("<a>" + t + "</a>")
-        .appendTo(ul);
-};
-
-$_searchQuery.autocomplete({
-    source: mdata,
-    appendTo: '#test'
-});
-*/
