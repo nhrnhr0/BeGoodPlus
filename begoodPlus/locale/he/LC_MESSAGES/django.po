@@ -1,0 +1,271 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-09-08 17:29+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n == 2 && n % "
+"1 == 0) ? 1: (n % 10 == 0 && n % 1 == 0 && n > 10) ? 2 : 3;\n"
+
+#: .\category\models.py:7
+msgid "title"
+msgstr "שם"
+
+#: .\category\models.py:10
+msgid "catalog representation"
+msgstr "ייצוג קטלוג"
+
+#: .\category\models.py:13 .\product\models.py:21
+msgid "category"
+msgstr "קטגורייה"
+
+#: .\category\models.py:14
+msgid "categories"
+msgstr "קטגוריות"
+
+#: .\category\models.py:19
+msgid "products count"
+msgstr "מספר מוצרים"
+
+#: .\color\models.py:9
+msgid "Color"
+msgstr "צבע"
+
+#: .\color\models.py:10
+msgid "Colors"
+msgstr "צבעים"
+
+#: .\color\models.py:12
+msgid "color name"
+msgstr "שם צבע"
+
+#: .\color\models.py:13 .\order_detail\models.py:15 .\stock\models.py:19
+msgid "color"
+msgstr "צבע"
+
+#: .\order\models.py:7
+msgid "Order"
+msgstr "הזמנה"
+
+#: .\order\models.py:8
+#, fuzzy
+#| msgid "Providers"
+msgid "Orders"
+msgstr "ספקים"
+
+#: .\order\models.py:10
+msgid "submit date"
+msgstr "תאריך הגשה"
+
+#: .\order\models.py:11
+#, fuzzy
+#| msgid "color name"
+msgid "client name"
+msgstr "שם לקוח"
+
+#: .\order\models.py:12 .\provider\models.py:12
+msgid "private compeny"
+msgstr "חברה פרטית"
+
+#: .\order\models.py:13
+msgid "addres"
+msgstr "כתובת"
+
+#: .\order\models.py:14
+msgid "telephone"
+msgstr "טלפון"
+
+#: .\order\models.py:15
+msgid "email"
+msgstr "אימייל"
+
+#: .\order\models.py:16
+msgid "contact man"
+msgstr "איש קשר"
+
+#: .\order\models.py:17
+msgid "cellphone"
+msgstr "נייד"
+
+#: .\order_detail\models.py:10
+msgid "Order detail"
+msgstr "פרטי הזמנה"
+
+#: .\order_detail\models.py:11
+msgid "Order details"
+msgstr "פרטי הזמנות"
+
+#: .\order_detail\models.py:12
+msgid "order"
+msgstr "הזמנה"
+
+#: .\order_detail\models.py:13
+#, fuzzy
+#| msgid "Product"
+msgid "product"
+msgstr "מוצר"
+
+#: .\order_detail\models.py:14 .\productSize\models.py:11 .\stock\models.py:18
+msgid "size"
+msgstr "גודל"
+
+#: .\order_detail\models.py:16 .\stock\models.py:22
+msgid "amount"
+msgstr "כמות"
+
+#: .\order_detail\models.py:17
+#, fuzzy
+#| msgid "suport printing"
+msgid "add printing"
+msgstr "תומך בהדפסה"
+
+#: .\order_detail\models.py:18
+#, fuzzy
+#| msgid "suport embroidery"
+msgid "add embroidery"
+msgstr "תומך ברקמה"
+
+#: .\packingType\models.py:7
+msgid "Packing type"
+msgstr "שיטת אריזה"
+
+#: .\packingType\models.py:8
+msgid "Packing types"
+msgstr "שיטות אריזה"
+
+#: .\productColor\models.py:10
+msgid "product color"
+msgstr "צבע מוצר"
+
+#: .\productColor\models.py:11
+msgid "product colors"
+msgstr "צבעי מוצר"
+
+#: .\productColor\models.py:14 .\productSize\models.py:12
+#: .\provider\models.py:13
+msgid "code"
+msgstr "קוד"
+
+#: .\productColor\models.py:18
+msgid "color representation"
+msgstr "ייצוג צבע"
+
+#: .\productImages\models.py:8
+msgid "Product image"
+msgstr "תמונת מוצר"
+
+#: .\productImages\models.py:9
+msgid "Product images"
+msgstr "תמונות מוצרים"
+
+#: .\productImages\models.py:11 .\product\models.py:75
+msgid "image"
+msgstr "תמונה"
+
+#: .\productImages\models.py:12 .\product\models.py:16
+msgid "Product"
+msgstr "מוצר"
+
+#: .\productSize\models.py:8
+msgid "Product size"
+msgstr "גודל מוצר"
+
+#: .\productSize\models.py:9
+msgid "Product sizes"
+msgstr "גדלי מוצרים"
+
+#: .\product\models.py:17
+msgid "Products"
+msgstr "מוצרים"
+
+#: .\product\models.py:20 .\provider\models.py:11
+msgid "name"
+msgstr "שם"
+
+#: .\product\models.py:26
+msgid "cost for institucional from"
+msgstr "מחיר לקוח מוסדי מ"
+
+#: .\product\models.py:27 .\product\models.py:29
+msgid "to"
+msgstr "עד"
+
+#: .\product\models.py:28
+msgid "cost for single client from"
+msgstr "מחיר לקוח בודד מ"
+
+#: .\product\models.py:31
+msgid "suport printing"
+msgstr "תומך בהדפסה"
+
+#: .\product\models.py:32
+msgid "suport embroidery"
+msgstr "תומך ברקמה"
+
+#: .\product\models.py:33
+msgid "content"
+msgstr "תוכן"
+
+#: .\product\models.py:34
+msgid "comments"
+msgstr "הערות"
+
+#: .\product\models.py:45
+msgid "customer catalog number"
+msgstr "מספר קטלוג לקוח"
+
+#: .\product\models.py:60
+msgid "institutional client price range"
+msgstr "טווח מחירים ללקוח מוסדי"
+
+#: .\product\models.py:64
+msgid "single client price range"
+msgstr "טווח מחירים ללקוח בודד"
+
+#: .\provider\models.py:8
+msgid "Provider"
+msgstr "ספק"
+
+#: .\provider\models.py:9
+msgid "Providers"
+msgstr "ספקים"
+
+#: .\stock\models.py:13
+msgid "Stock"
+msgstr "מלאי"
+
+#: .\stock\models.py:14
+msgid "Stocks"
+msgstr "מלאים"
+
+#: .\stock\models.py:16
+msgid "product name"
+msgstr "שם המוצר"
+
+#: .\stock\models.py:17
+msgid "product provider"
+msgstr "ספק המוצר"
+
+#: .\stock\models.py:20
+msgid "packing type"
+msgstr "שיטת אריזה"
+
+#: .\stock\models.py:21
+msgid "provider makat"
+msgstr "מק\"ט ספק"
+
+#: .\stock\models.py:33
+msgid "makat"
+msgstr "מק\"ט"

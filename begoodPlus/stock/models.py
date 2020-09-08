@@ -8,12 +8,17 @@ from django.utils.translation import gettext as _
 from packingType.models import PackingType
 # Create your models here.
 class Stock(models.Model):
-    product = models.ForeignKey(to=Product, on_delete=models.CASCADE)
-    provider = models.ForeignKey(to=Provider, on_delete=models.CASCADE)
-    productSize = models.ForeignKey(to=ProductSize, on_delete=models.CASCADE)
-    productColor = models.ForeignKey(to=ProductColor, on_delete=models.CASCADE)
-    packingType = models.ForeignKey(to=PackingType, on_delete=models.CASCADE)
-    providerMakat = models.CharField(max_length=50, blank=True)
+
+    class Meta():
+        verbose_name = _('Stock')
+        verbose_name_plural = _('Stocks')
+        
+    product = models.ForeignKey(verbose_name=_("product name"), to=Product, on_delete=models.CASCADE)
+    provider = models.ForeignKey(verbose_name=_("product provider"), to=Provider, on_delete=models.CASCADE)
+    productSize = models.ForeignKey( verbose_name=_("size"), to=ProductSize, on_delete=models.CASCADE)
+    productColor = models.ForeignKey(verbose_name=_("color"), to=ProductColor, on_delete=models.CASCADE)
+    packingType = models.ForeignKey(verbose_name=_("packing type"), to=PackingType, on_delete=models.CASCADE)
+    providerMakat = models.CharField(verbose_name=_("provider makat"), max_length=50, blank=True)
     amount = models.IntegerField(verbose_name=_('amount'), default=1)
 
     def catalog_part(self):
@@ -25,3 +30,4 @@ class Stock(models.Model):
         color_rep = self.productColor.code
         product_id = str(self.product.id)
         return category_rep + provider_rep + subcat_rep + '-' + size_rep + '-' + color_rep + '-' + product_id
+    catalog_part.short_description = _("makat")

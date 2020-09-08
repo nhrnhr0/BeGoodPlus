@@ -11,6 +11,8 @@ class productImageInline(admin.TabularInline):
     readonly_fields = ('render_image',)
 
     extra = 2
+    
+    show_change_link = True
 
     def render_image(self, obj):
         ret = ''
@@ -21,17 +23,20 @@ from stock.models import Stock
 class stockInline(admin.TabularInline):
     model = Stock
     extra = 1
+    
+    show_change_link = True
 
 
 
 class ProductAdmin(admin.ModelAdmin):
 
-    list_display = ('name', 'category','customer_catalog', 'catalog_part', 'inst_client_range', 'sing_client_range', 'category_index','render_image',)
-    readonly_fields = ('id','category_index',)
+    list_display = ('name', 'category','customer_catalog_gen', 'inst_client_range', 'sing_client_range','render_image',)
+    readonly_fields = ('id','category_index','customer_catalog_gen',)
     fieldsets = (
         (None, {
             "fields": (
                 ('id','category_index'), 
+                'customer_catalog_gen',
                 'name', 'category',
                 ('const_inst_client_min', 'const_inst_client_max'),
                 ('const_sing_client_min', 'const_sing_client_max'),
@@ -42,5 +47,14 @@ class ProductAdmin(admin.ModelAdmin):
     )
     #exclude = ('category_index',)
     inlines = [productImageInline,stockInline] # productColorInline
+    
+    search_fields = ('name', 'category__title',)
+    def get_search_results(self, request, queryset, search_term):
+        new_queryset, use_distinct = super().get_search_results(request, queryset, search_term)
+        # adding to the original search. search by "customer_catalog_gen"
+        for p in queryset:
+            if search_term in p.customer_catalog_gen() and p not in new_queryset:
+                new_queryset |= Product.objects.filter(pk=p.pk)
+        return new_queryset, use_distinct
 
 admin.site.register(Product,ProductAdmin)

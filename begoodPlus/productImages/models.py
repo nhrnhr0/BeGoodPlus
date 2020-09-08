@@ -4,8 +4,12 @@ from django.utils.translation import gettext as _
 
 # Create your models here.
 class ProductImage(models.Model):
+    class Meta():
+        verbose_name = _('Product image')
+        verbose_name_plural = _('Product images')
+    
     image = models.ImageField(verbose_name=_('image'))
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name=_('Product'))
 
     @property
     def get_absolute_image_url(self):

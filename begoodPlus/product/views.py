@@ -25,7 +25,7 @@ def products_select(request,phrash,  *args, **kwargs):
     #qs_products = qs_products.values('id', 'name', 'content',)
     products = []
     for p in qs_products:
-        product = {"id":p.id, "name": p.name, "content": p.content, "catalog":p.customer_catalog()}
+        product = {"id":p.id, "name": p.name, "content": p.content, "catalog":p.customer_catalog_gen(), "suport_printing":p.suport_printing,"suport_embroidery":p.suport_embroidery }
         image = ProductImage.objects.filter(product=product["id"]).first()
         if image != None:
             product['image'] = image.image.url

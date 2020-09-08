@@ -6,9 +6,11 @@ from product.models import Product
 class ProductInline(admin.TabularInline):
     model = Product
     fields = ('name', 'content')
+    show_change_link = True
 
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('title', 'parent','catalog_rep',  'itemsCount', '__str__')
+    list_display = ('title', 'catalog_rep', 'products_count',)
 
     inlines = [ProductInline,]
+    
 admin.site.register(Category,CategoryAdmin)

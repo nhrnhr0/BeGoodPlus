@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'colorfield',
     'rest_framework',
     'django_user_agents',
+    'django_extensions',
 
     # own
     'core',
@@ -49,6 +50,8 @@ INSTALLED_APPS = [
     'product',
     'packingType',
     'stock',
+    'order',
+    'order_detail',
 
 
 
@@ -84,7 +87,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
     # own
-    'django.middleware.locale.LocaleMiddleware',
+    #'django.middleware.locale.LocaleMiddleware',
     'django_user_agents.middleware.UserAgentMiddleware',
 ]
 
@@ -143,7 +146,8 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+#LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'he'
 
 TIME_ZONE = 'UTC'
 
@@ -172,3 +176,4 @@ STATICFILES_DIRS = [
 
 MEDIA_URL= '/media/'
 MEDIA_ROOT = os.path.join(STATIC_ROOT, 'media_root/')
+

@@ -65,7 +65,7 @@ class Command(BaseCommand):
                 print(productStuckList)
 
                 from provider.models import Provider
-                 
+                
                 try:
                     defultProvider = Provider.objects.all()[0]
                 except:
