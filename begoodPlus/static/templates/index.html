@@ -1,107 +1,156 @@
 <!DOCTYPE html>
 <html>
-<head>
-    {% load static %}
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>הזמנת מוצרים</title>
-    <link rel="stylesheet" href="{%static 'assets/css/magicsuggest-min.css' %}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{%static 'assets/css/Navigation-with-Button.css' %}"> <!-- ?h=8045a4dca95eb6931473606f7a274f5a -->
-    <link rel="stylesheet" href="{%static 'assets/css/styles.css' %}"> <!--?h=ffb57a783da9e1f99b9eebf0f4670d4c -->
 
+    <head>
+        {%load static%}
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+        <title>Untitled</title>
+        <link rel="shortcut icon" href="{%static 'favicon.ico' %}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 
-
-    <link rel="stylesheet" href="{%static 'css/uikit.min.css' %}" />
-    <script src="{%static 'js/uikit.min.js' %}"></script>
-    <script src="{%static 'js/uikit-icons.min.js' %}"></script>
-
-</head>
-
-<body class="text-center" dir="rtl">
-    <section class="d-xl-flex align-items-xl-center">
-        <div class="container d-lg-flex justify-content-lg-center align-items-lg-center" style="margin-right: 0px;margin-left: 0px;margin-top: 0VH;"><img src="{%static 'assets/img/begoodPlusLogo.webp' %}"></div> <!-- ?h=7bae00bfe67edb4cb320621a4b165b7e -->
-    </section>
-    <section>
-        <form style="margin: 0px;padding: 0px;">
-            <div class="form-group d-lg-flex d-xl-flex justify-content-lg-center justify-content-xl-center align-items-xl-center" style="padding: 0px;margin-right: 0px;margin-left: 0px;padding-left: 0px;padding-right: 0px;"><label class="d-xl-flex flex-shrink-0 justify-content-xl-end align-items-xl-center" style="padding: 0px;margin: 0px;margin-right: 0px;margin-left: 0px;">תאריך הזמנה:&nbsp; &nbsp;</label><input class="form-control" type="text"><label class="flex-shrink-0"
-                    style="padding-right: 110px;">שם הלקוח/עסק:&nbsp; &nbsp;</label><input class="form-control" id="cilentName" type="text"></div>
-            <div class="form-group d-lg-flex d-xl-flex justify-content-lg-center justify-content-xl-center align-items-xl-center"><label class="d-xl-flex flex-shrink-0 align-items-xl-center">ח.פ. :&nbsp; &nbsp;</label><input class="form-control" type="text"><label class="d-xl-flex flex-shrink-0 align-items-xl-center" style="padding-right: 67px;">טל:&nbsp; &nbsp;</label>
-                <input
-                    class="form-control d-xl-flex align-items-xl-center" type="number"></div>
-            <div class="form-group d-lg-flex align-items-lg-center">
-            <label class="flex-shrink-0">כתובת:&nbsp; &nbsp;</label>
-            <input id="addres" class="form-control" type="text"><label class="flex-shrink-0" style="padding-right: 47px;">מייל:&nbsp; &nbsp;</label><input class="form-control" type="email">
-            <div id="addres-suggest"></div>
-            </div>
-            <div class="form-group d-lg-flex align-items-lg-center"><label class="flex-shrink-0">איש קשר:&nbsp; &nbsp;</label><input class="form-control" type="text"><label class="flex-shrink-0" style="margin-right: 35px;">נייד:&nbsp; &nbsp;</label><input class="form-control" type="text"></div><span style="margin-top: 0px;padding-bottom: 0px;">הספקה תוך&nbsp;<strong>7 ימי עסקים</strong></span>
-            <div
-                class="table-responsive table-bordered" style="padding-bottom: 0px;padding-top: 100px;">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>שם המוצר</th>
-                            <th>מק"ט</th>
-                            <th>צבע</th>
-                            <th colspan="2">
-                                <div class="table-responsive table-borderless">
-                                    <table class="table table-bordered table-sm">
-                                        <thead>
-                                            <tr>
-                                                <th colspan="2">אני מעוניין להוסיף</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <th>רקמה</th>
-                                                <th>הדפסה</th>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+        <link rel="stylesheet" href="{%static 'assets/css/Contact-Form-v2-Modal--Full-with-Google-Map.css'%}">
+        <link rel="stylesheet" href="{%static 'assets/css/Responsive-Form-1.css'%}">
+        <link rel="stylesheet" href="{%static 'assets/css/Responsive-Form.css'%}">
+        <link rel="stylesheet" href="{%static 'assets/css/easy-autocomplete.min.css'%}">
+        <link rel="stylesheet" href="{%static 'assets/css/easy-autocomplete.themes.min.css'%}">
+        <link rel="stylesheet" href="{%static 'assets/css/bootstrap-colorselector.min.css' %}" />
+        <link rel="stylesheet" href="{%static 'assets/css/styles.css'%}">
+    
+        
+    
+    </head>
+    
+    <body>
+        <div class="container">
+            <div>
+                <form>
+                    <div class="form-group">
+                        <div id="formdiv">
+                            <div class="form-row" style="margin-right:0px;margin-left:0px;padding-top:24px;">
+                                <div class="col-md-8 offset-md-1">
+                                    <p class="text-right" style="margin-left:2%;font-family:Roboto, sans-serif;font-size:24px;"><strong>תאריך הזמנה</strong><br></p>
                                 </div>
-                            </th>
-                            <th>מידות</th>
-                            <th>כמות</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <div id="magicsuggest"></div>
-                            </td>
-                            <td>
-                                
-                            </td>
-                            <td>
-                                </td>
-                            <td></td>
-                            <td>Text</td>
-                            <td>Text</td>
-                            <td>Text</td>
-                        </tr>
-                        <tr>
+                                <div class="col-md-10 offset-md-1"><input class="form-control" placeholder="dd-mm-yyyy" style="font-family:Roboto, sans-serif;" dir="rtl" id="date" type="date"></div>
+                            </div>
+    
+                            <div class="form-row" style="margin-right:0px;margin-left:0px;padding-top:24px;">
+                                <div class="col-md-8 offset-md-1">
+                                    <p class="text-right" style="margin-left:2%;font-family:Roboto, sans-serif;font-size:24px;"><strong>שם הלקוח</strong></p>
+                                </div>
+                                <div class="col-md-10 offset-md-1"><input dir="rtl" class="form-control" type="text" style="margin-left:0px;font-family:Roboto, sans-serif;" name="name" placeholder="שם"></div>
+                            </div>
+    
+                            <div class="form-row" style="margin-right:0px;margin-left:0px;padding-top:24px;">
+                                <div class="col-md-8 offset-md-1">
+                                    <p class="text-right" style="margin-left:2%;font-family:Roboto, sans-serif;font-size:24px;"><strong>.ח.פ</strong></p>
+                                </div>
+                                <div class="col-md-10 offset-md-1"><input class="form-control" style="font-family:Roboto, sans-serif;" dir="rtl" placeholder=".ח.פ"></input></div>
+                            </div>
+    
+                            <div class="form-row" style="margin-right:0px;margin-left:0px;padding-top:24px;margin-top:-16px;">
+                                <div class="col-md-8 offset-md-1">
+                                    <p class="text-right" style="margin-left:2%;font-family:Roboto, sans-serif;font-size:24px;"><strong>כתובת</strong></p>
+                                </div>
+                                <!-- <div class="col-md-10 offset-md-1"><select class="form-control" style="font-family:Roboto, sans-serif;" name="gender"><optgroup label="This is a group"><option value="12" selected="">This is item 1</option><option value="13">This is item 2</option><option value="14">This is item 3</option></optgroup></select></div> -->
+                                <div class="col-md-10 offset-md-1"><input dir="rtl" class="form-control" type="text" style="margin-left:0px;font-family:Roboto, sans-serif;" name="name" placeholder="כתובת"></div>
+    
+                            </div>
                             
-                            <td>Cell 4</td>
-                        </tr>
-                    </tbody>
-                </table>
-                </div>
-        </form>
-    </section>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script
-  src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"
-  integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E="
-  crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCLmOyl1lZ1oOovi60v6HPnp6bY-7A80is&language=he&libraries=places"></script>
-    <script src="{%static 'assets/js/magicsuggest-min.js' %}"></script>
-    <script>
-        // server side to client side vars initalizetion
-        var baseStaticURL = "{%static '' %}"
-    </script>
-    <script src="{%static 'assets/js/script.js' %}"></script>
-
-</body>
+                            <div class="form-row" style="margin-right:0px;margin-left:0px;padding-top:24px;">
+                                <div class="col-md-8 offset-md-1">
+                                    <p class="text-right" style="margin-left:2%;font-family:Roboto, sans-serif;font-size:24px;"><strong>טל</strong></p>
+                                </div>
+                                <div class="col-md-10 offset-md-1"><input class="form-control" type="text" style="margin-left:0px;font-family:Roboto, sans-serif;" dir="rtl"  name="birthPlace" placeholder="טל"></div>
+                            </div>
+    
+                            <div class="form-row" style="margin-right:0px;margin-left:0px;padding-top:24px;">
+                                <div class="col-md-8 offset-md-1">
+                                    <p class="text-right" style="margin-left:2%;font-family:Roboto, sans-serif;font-size:24px;"><strong>מייל</strong></p>
+                                </div>
+                                <div class="col-md-10 offset-md-1"><input class="form-control" style="font-family:Roboto, sans-serif;" autocomplete="true" inputmode="email" placeholder="מייל"></input></div>
+                            </div>
+    
+                                                    <div class="form-row" style="margin-right:0px;margin-left:0px;padding-top:24px;">
+                                <div class="col-md-8 offset-md-1">
+                                    <p class="text-right" style="margin-left:2%;font-family:Roboto, sans-serif;font-size:24px;"><strong>איש קשר</strong></p>
+                                </div>
+                                <div class="col-md-10 offset-md-1"><input class="form-control" type="text" dir="rtl" style="margin-left:0px;font-family:Roboto, sans-serif;" placeholder="איש קשר"></div>
+                            </div>
+    
+                            <div class="form-row" style="margin-right:0px;margin-left:0px;padding-top:24px;">
+                                <div class="col-md-8 offset-md-1">
+                                    <p class="text-right" style="margin-left:2%;font-family:Roboto, sans-serif;font-size:24px;"><strong>נייד</strong></p>
+                                </div>
+                                <div class="col-md-10 offset-md-1" style="font-family:Roboto, sans-serif;"><input class="form-control" dir="rtl" type="text" style="margin-left:0px;" placeholder="נייד"></div>
+                            </div>
+    
+    
+    
+    
+                            <div class="form-row text-right">
+                                <div class="col">
+                                    <div style="height: 100%;margin-top: 28px;padding-bottom: 500px;" class="table-responsive">
+                                    
+                                        <table id="productsTable" class="table" dir="rtl">
+                                            <thead>
+                                                <tr>
+                                                    <th>שם המוצר</th>
+                                                    <th>מק"ט</th>
+                                                    <th>מידה</th>
+                                                    <th>צבע</th>
+                                                    <th>כמות</th>
+                                                    <th>עוד</th>
+                                                    <th>הוספה</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            <!--
+                                                <tr>
+                                                    <td><input id="productInput_0" class="form-control" type="text" dir="rtl" style="margin-left:0px;font-family:Roboto, sans-serif;" placeholder="הכנס מוצר"></td>
+                                                    <td><div id="catalogNumber_0" ></div></td>
+                                                    <td><div id="size_0"> </div> </td>
+                                                    <td><div id="color_0"></div></td>
+                                                    <td><input id="amount_0" value="1" type="number" min="1" max="999" class="form-control" /></td>
+                                                    <td>
+                                                        <div dir="rtl" class="btn-group" role="group">
+                                                            <button class="btn btn-ligth" style="border-radius: 0 !important;border: 1px solid black;" type="button"><i title="שכפל" class="fas fa-copy"></i></button>
+                                                            <button class="btn btn-ligth" style="border-radius: 0 !important;border: 1px solid black;" type="button"><i title="מחק" class="far fa-trash-alt"></i></button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            -->
+                                                <tr>
+                                                    
+                                                    <td id="new_product_td">
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row" style="margin-right:0px;margin-left:0px;padding-top:24px;">
+                                <div class="col-12 col-md-4 offset-md-4">
+                                    <button class="btn btn-secondary btn-lg" style="font-family:Roboto, sans-serif;" type="reset">נקה </button>
+                                    <button class="btn btn-success btn-lg" style="margin-left:16px;font-family:Roboto, sans-serif;" type="submit">שלח </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.bundle.min.js" defer></script>
+        <script src="https://kit.fontawesome.com/022c0fea0b.js" crossorigin="anonymous" defer></script>
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCLmOyl1lZ1oOovi60v6HPnp6bY-7A80is&language=he&libraries=places"></script>
+        <script src="{%static 'assets/js/Contact-Form-v2-Modal--Full-with-Google-Map.js' %}" defer></script>
+        <script src="{%static 'assets/js/jquery.easy-autocomplete.min.js' %}" defer></script>
+        <script src="{%static 'assets/js/bootstrap-colorselector.min.js' %}" defer></script>
+        <script src="{%static 'assets/js/script.js' %}" defer></script>
+    
+    </body>
 
 </html>
