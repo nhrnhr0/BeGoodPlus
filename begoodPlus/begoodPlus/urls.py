@@ -37,7 +37,8 @@ urlpatterns = [
     path('order/products_select/<str:phrash>', products_select),
     path('order/products_select/', products_select_all),
     path('order/product_detail/<int:id>', product_detail),
-    path('catalog/', catalog_view)
+    path('catalog/', catalog_view),
+    path('', catalog_view)
 ]
 
 if settings.DEBUG:
