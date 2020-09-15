@@ -8,8 +8,8 @@ from utils.utils import get_next_value
 from django.utils.html import mark_safe
 from django.conf import settings
 from utils import utils
-#from sequences import get_next_value
-# Create your models here.
+        
+        
 class Product(models.Model):
 
     class Meta():
@@ -21,11 +21,13 @@ class Product(models.Model):
     category = models.ForeignKey(Category, on_delete=models.PROTECT, verbose_name=_('category'))
     #running_code = models.IntegerField(verbose_name='sub-catalog')
     category_index = models.IntegerField()
+    
+    buy_cost = models.PositiveSmallIntegerField(verbose_name=_('buy cost'))
 
     #cost_prices = models.IntegerField(verbose_name=_('cost prices'), null=True, default=0)
-    const_inst_client_min = models.IntegerField(verbose_name=_('cost for institucional from'),null=True, default=0)
+    const_inst_client_min = models.IntegerField(verbose_name=_('cost for institucional without tax from'),null=True, default=0)
     const_inst_client_max = models.IntegerField(verbose_name=_('to'),null=True, default=0)
-    const_sing_client_min = models.IntegerField(verbose_name=_('cost for single client from'),null=True, default=0)
+    const_sing_client_min = models.IntegerField(verbose_name=_('cost for single client with tax from'),null=True, default=0)
     const_sing_client_max = models.IntegerField(verbose_name=_('to'),null=True, default=0)
     #packing = models.ForeignKey(to=PackingType, on_delete=models.CASCADE, default=0)
     suport_printing = models.BooleanField(verbose_name=_('suport printing'), default=True)
@@ -35,6 +37,12 @@ class Product(models.Model):
     #customer_catalog = models.CharField(verbose_name=_("customer catalog"), max_length=50)
     def __str__(self):
         return self.name
+        
+    def buy_cost_tax(self, *args, **kwargs):
+        return self.buy_cost * 1.17
+    buy_cost_tax.short_description = _("buy const with tax")
+        
+    
 
     def catalog_part(self, *args, **kwargs):
         return ''.join(utils.catalog_representation[self.category_index])
@@ -62,6 +70,15 @@ class Product(models.Model):
     def sing_client_range(self, *args, **kwargs):
         return '(' + str(self.const_sing_client_min) + ' - ' +  str(self.const_sing_client_max) + ')'
     sing_client_range.short_description = _("single client price range")
+    
+    def total_amount(self, *args, **kwargs):
+        from stock.models import Stock
+        from django.db.models import Sum
+        
+        stocks = Stock.objects.filter(product=self)
+        res = stocks.aggregate(Sum('amount'))
+        return res['amount__sum']
+    total_amount.short_description = _("total stock at us")
 
 
     def render_image(self, *args, **kwargs):

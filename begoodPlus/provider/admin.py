@@ -11,4 +11,15 @@ class castumProviderAdmin(admin.ModelAdmin):
     inlines = [productInline,]
 
 admin.site.register(Provider, castumProviderAdmin)'''
-admin.site.register(Provider)
+
+from stock.models import Stock
+class StockInline(admin.TabularInline):
+    model = Stock
+    
+    pass
+    
+class ProviderAdmin(admin.ModelAdmin):
+    list_display = ['name', 'stocks_count',]
+    inlines = [StockInline,]
+    pass
+admin.site.register(Provider, ProviderAdmin)

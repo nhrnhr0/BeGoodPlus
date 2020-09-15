@@ -5,7 +5,8 @@ from .models import Category
 from product.models import Product
 class ProductInline(admin.TabularInline):
     model = Product
-    fields = ('name', 'content')
+    fields = ('name', 'content', 'render_image', )
+    readonly_fields = ('render_image',)
     show_change_link = True
 
 class CategoryAdmin(admin.ModelAdmin):

@@ -4,6 +4,9 @@ from .models import Product
 from productImages.models import ProductImage
 from django.utils.html import mark_safe
 from django.conf import settings
+from django.utils.translation import gettext as _
+from django.contrib import messages 
+
 class productImageInline(admin.TabularInline):
     #fields = ('render_image',)
     model = ProductImage
@@ -30,14 +33,15 @@ class stockInline(admin.TabularInline):
 
 class ProductAdmin(admin.ModelAdmin):
 
-    list_display = ('name', 'category','customer_catalog_gen', 'inst_client_range', 'sing_client_range','render_image',)
-    readonly_fields = ('id','category_index','customer_catalog_gen',)
+    list_display = ('name', 'category','customer_catalog_gen', 'inst_client_range', 'sing_client_range', 'total_amount','render_image','suport_printing', 'suport_embroidery',)
+    readonly_fields = ('id','category_index','customer_catalog_gen','total_amount','buy_cost_tax',)
     fieldsets = (
         (None, {
             "fields": (
                 ('id','category_index'), 
                 'customer_catalog_gen',
                 'name', 'category',
+                ('buy_cost', 'buy_cost_tax'),
                 ('const_inst_client_min', 'const_inst_client_max'),
                 ('const_sing_client_min', 'const_sing_client_max'),
                 ('suport_printing', 'suport_embroidery'),
@@ -57,4 +61,32 @@ class ProductAdmin(admin.ModelAdmin):
                 new_queryset |= Product.objects.filter(pk=p.pk)
         return new_queryset, use_distinct
 
+
+    def make_prining_active(modeladmin, request, queryset):
+        queryset.update(suport_printing = True)
+        messages.success(request, _(str(len(queryset)) + " Selected Record(s) Marked as Active pringing Successfully"))
+    make_prining_active.short_description = _('make prining active')
+        
+    def make_embroidery_active(modeladmin, request, queryset):
+        queryset.update(suport_embroidery = True)
+        messages.success(request, _(sre(len(queryset)) + " Selected Record(s) Marked as Active embroidery Successfully"))
+    make_embroidery_active.short_description = _('make embroidery active')
+        
+    def make_prining_inactive(modeladmin, request, queryset):
+        queryset.update(suport_printing = False)
+        messages.success(request, _(str(len(queryset)) + " Selected Record(s) Marked as Inactive pringing Successfully"))
+    make_prining_inactive.short_description = _('make prining inactive')
+        
+    def make_embroidery_inactive(modeladmin, request, queryset):
+        queryset.update(suport_embroidery = False)
+        messages.success(request, _(str(len(queryset)) + " Selected Record(s) Marked as Inactive embroidery Successfully"))
+    make_embroidery_inactive.short_description = _('make embroidery inactive')
+        
+    #admin.site.add_action(make_prining_active, _("Make pringing active"))
+    #admin.site.add_action(make_prining_active, _("Make pringing active"))
+    #admin.site.add_action(make_prining_inactive, _("Make pringing inactive"))
+    #admin.site.add_action(make_embroidery_inactive, _("Make embroidery inactive"))
+    
+    actions = ('make_prining_active','make_embroidery_active','make_prining_inactive', 'make_embroidery_inactive',)
+    
 admin.site.register(Product,ProductAdmin)
