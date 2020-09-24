@@ -28,7 +28,11 @@ router = routers.DefaultRouter()
 router.register(r'products', ProductViewSet)
 router.register(r'categories', CategoryViewSet)
 router.register(r'productImages', ProductImageSerializer)
-
+from provider.views import api_providers
+from packingType.views import api_packing_types
+from productSize.views import api_product_sizes
+from productColor.views import api_product_colors
+from stock.views import add_multiple_stocks
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('order/', order_form),
@@ -38,9 +42,20 @@ urlpatterns = [
     path('order/products_select/', products_select_all),
     path('order/product_detail/<int:id>', product_detail),
     path('catalog/', catalog_view),
-    path('', catalog_view)
+    path('', catalog_view),
+    path('api/providers', api_providers), 
+    path('api/packingTypes', api_packing_types),
+    path('api/productSizes', api_product_sizes),
+    path('api/productColors', api_product_colors),
+    path('api/add_multiple_stocks', add_multiple_stocks),
 ]
 
 if settings.DEBUG:
     urlpatterns= urlpatterns + static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)
     urlpatterns= urlpatterns + static(settings.STATIC_URL, document_root= settings.STATIC_ROOT)
+    
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns = [
+        path('__debug__/', include(debug_toolbar.urls)),
+    ] + urlpatterns

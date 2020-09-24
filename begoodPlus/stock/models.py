@@ -8,10 +8,10 @@ from django.utils.translation import gettext as _
 from packingType.models import PackingType
 # Create your models here.
 class Stock(models.Model):
-
     class Meta():
         verbose_name = _('Stock')
         verbose_name_plural = _('Stocks')
+        default_related_name = 'stocks'
         
     product = models.ForeignKey(verbose_name=_("product name"), to=Product, on_delete=models.CASCADE)
     provider = models.ForeignKey(verbose_name=_("product provider"), to=Provider, on_delete=models.CASCADE)
@@ -19,7 +19,7 @@ class Stock(models.Model):
     productColor = models.ForeignKey(verbose_name=_("color"), to=ProductColor, on_delete=models.CASCADE)
     packingType = models.ForeignKey(verbose_name=_("packing type"), to=PackingType, on_delete=models.CASCADE)
     providerMakat = models.CharField(verbose_name=_("provider makat"), max_length=50, blank=True)
-    amount = models.IntegerField(verbose_name=_('stock at us'), default=1)
+    amount = models.IntegerField(verbose_name=_('stock at us'), default=0)
     provider_has_stock = models.BooleanField(verbose_name=_("exist at provider"), default=True)
     provider_resupply_date = models.DateTimeField(verbose_name=_("provider resupply date"), null=True)
 

@@ -6,7 +6,7 @@ from django.utils.html import mark_safe
 from django.conf import settings
 from django.utils.translation import gettext as _
 from django.contrib import messages 
-
+from django.db.models import Prefetch
 class productImageInline(admin.TabularInline):
     #fields = ('render_image',)
     model = ProductImage
@@ -24,6 +24,12 @@ class productImageInline(admin.TabularInline):
 
 from stock.models import Stock
 class stockInline(admin.TabularInline):
+    def get_queryset(self, request):
+        qs = super(stockInline, self).get_queryset(request)
+        qs = qs.select_related('product','provider','productSize','productColor','packingType')
+        return qs
+    fields = ('provider','productSize', 'productColor', 'packingType', 'providerMakat', 'amount', 'provider_has_stock', 'provider_resupply_date',)
+    readonly_fields = ('provider', 'productSize','productColor','packingType','providerMakat',)
     model = Stock
     extra = 1
     
@@ -32,9 +38,10 @@ class stockInline(admin.TabularInline):
 
 
 class ProductAdmin(admin.ModelAdmin):
-
-    list_display = ('name', 'category','customer_catalog_gen', 'inst_client_range', 'sing_client_range', 'total_amount','render_image','suport_printing', 'suport_embroidery',)
-    readonly_fields = ('id','category_index','customer_catalog_gen','total_amount','buy_cost_tax',)
+    list_display = ('name', 'category','customer_catalog_gen', 'inst_client_range', 'const_sing_client', 'total_amount','render_image','suport_printing', 'suport_embroidery',)
+    readonly_fields = ('id', 'category_index','customer_catalog_gen','total_amount','buy_cost_tax',)
+    list_select_related = ('category',)
+    list_filter = ('category','suport_printing', 'suport_embroidery',)
     fieldsets = (
         (None, {
             "fields": (
@@ -43,13 +50,24 @@ class ProductAdmin(admin.ModelAdmin):
                 'name', 'category',
                 ('buy_cost', 'buy_cost_tax'),
                 ('const_inst_client_min', 'const_inst_client_max'),
-                ('const_sing_client_min', 'const_sing_client_max'),
+                ('const_sing_client'),
                 ('suport_printing', 'suport_embroidery'),
                 'content','comments',
             ),
         }),
     )
+    def get_queryset(self, request):
+        qs = super(ProductAdmin, self).get_queryset(request)
+        from django.db.models import Sum
+        qs = qs.select_related('category')
+        qs = qs.prefetch_related('images', 'stocks')
+        qs = qs.annotate(stocks_totalamount =Sum('stocks__amount') )
+        #qs = Product.objects.select_related('category').prefetch_related('images','stocks')
+        
+        return qs
+    
     #exclude = ('category_index',)
+    #inlines = [productImageInline,stockInline] # productColorInline
     inlines = [productImageInline,stockInline] # productColorInline
     
     search_fields = ('name', 'category__title',)

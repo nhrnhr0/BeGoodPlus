@@ -10,6 +10,7 @@ class ProductColor(Color):
         verbose_name = _('product color')
         verbose_name_plural = _('product colors')
         ordering = ('code',)
+        default_related_name = 'productColors'
         
     code = models.CharField(verbose_name=_('code'), max_length=2)
 

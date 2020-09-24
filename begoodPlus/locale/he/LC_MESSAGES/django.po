@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-15 12:23+0300\n"
+"POT-Creation-Date: 2020-09-24 22:23+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -71,7 +71,7 @@ msgstr "תאריך הגשה"
 msgid "client name"
 msgstr "שם לקוח"
 
-#: .\order\models.py:12 .\provider\models.py:12
+#: .\order\models.py:12 .\provider\models.py:13
 msgid "private compeny"
 msgstr "חברה פרטית"
 
@@ -111,7 +111,7 @@ msgstr "הזמנה"
 msgid "product"
 msgstr "מוצר"
 
-#: .\order_detail\models.py:14 .\productSize\models.py:12 .\stock\models.py:18
+#: .\order_detail\models.py:14 .\productSize\models.py:13 .\stock\models.py:18
 msgid "size"
 msgstr "גודל"
 
@@ -143,12 +143,12 @@ msgstr "צבע מוצר"
 msgid "product colors"
 msgstr "צבעי מוצר"
 
-#: .\productColor\models.py:14 .\productSize\models.py:13
-#: .\provider\models.py:13
+#: .\productColor\models.py:15 .\productSize\models.py:14
+#: .\provider\models.py:14
 msgid "code"
 msgstr "קוד"
 
-#: .\productColor\models.py:18
+#: .\productColor\models.py:19
 msgid "color representation"
 msgstr "ייצוג צבע"
 
@@ -160,11 +160,11 @@ msgstr "תמונת מוצר"
 msgid "Product images"
 msgstr "תמונות מוצרים"
 
-#: .\productImages\models.py:11 .\product\models.py:92
+#: .\productImages\models.py:12 .\product\models.py:107
 msgid "image"
 msgstr "תמונה"
 
-#: .\productImages\models.py:12 .\product\models.py:16
+#: .\productImages\models.py:13 .\product\models.py:16
 msgid "Product"
 msgstr "מוצר"
 
@@ -176,35 +176,35 @@ msgstr "גודל מוצר"
 msgid "Product sizes"
 msgstr "גדלי מוצרים"
 
-#: .\product\admin.py:67
+#: .\product\admin.py:84
 msgid " Selected Record(s) Marked as Active pringing Successfully"
 msgstr " מוצרים מסומנים סומנו כתומכים בהדפסה"
 
-#: .\product\admin.py:68
+#: .\product\admin.py:85
 msgid "make prining active"
 msgstr "הפוך הדפסה לזמינה"
 
-#: .\product\admin.py:72
+#: .\product\admin.py:89
 msgid " Selected Record(s) Marked as Active embroidery Successfully"
 msgstr " מוצרים מסומנים סומנו כתומכים ברקמה"
 
-#: .\product\admin.py:73
+#: .\product\admin.py:90
 msgid "make embroidery active"
 msgstr "הפוך רקמה לזמינה"
 
-#: .\product\admin.py:77
+#: .\product\admin.py:94
 msgid " Selected Record(s) Marked as Inactive pringing Successfully"
 msgstr " מוצרים מסומנים סומנו כלא תומכי הדפסה"
 
-#: .\product\admin.py:78
+#: .\product\admin.py:95
 msgid "make prining inactive"
 msgstr "הפוך הדפסה ללא זמינה"
 
-#: .\product\admin.py:82
+#: .\product\admin.py:99
 msgid " Selected Record(s) Marked as Inactive embroidery Successfully"
 msgstr " מוצרים מסומנים סומנו כלא תומכי רקמה"
 
-#: .\product\admin.py:83
+#: .\product\admin.py:100
 msgid "make embroidery inactive"
 msgstr "הפוך רקמה ללא זמינה"
 
@@ -212,7 +212,7 @@ msgstr "הפוך רקמה ללא זמינה"
 msgid "Products"
 msgstr "מוצרים"
 
-#: .\product\models.py:20 .\provider\models.py:11
+#: .\product\models.py:20 .\provider\models.py:12
 msgid "name"
 msgstr "שם"
 
@@ -224,47 +224,47 @@ msgstr "מחיר עלות"
 msgid "cost for institucional without tax from"
 msgstr "מחיר לקוח מוסדי ללא מע\"מ מ"
 
-#: .\product\models.py:29 .\product\models.py:31
+#: .\product\models.py:29
 msgid "to"
 msgstr "עד"
 
 #: .\product\models.py:30
-msgid "cost for single client with tax from"
-msgstr "מחיר לקוח בודד כולל מע\"מ מ"
+msgid "cost for single client with tax"
+msgstr "מחיר לקוח בודד כולל מע\"מ"
 
-#: .\product\models.py:33
+#: .\product\models.py:32
 msgid "suport printing"
 msgstr "תומך בהדפסה"
 
-#: .\product\models.py:34
+#: .\product\models.py:33
 msgid "suport embroidery"
 msgstr "תומך ברקמה"
 
-#: .\product\models.py:35
+#: .\product\models.py:34
 msgid "content"
 msgstr "תוכן"
 
-#: .\product\models.py:36
+#: .\product\models.py:35
 msgid "comments"
 msgstr "הערות"
 
-#: .\product\models.py:43
+#: .\product\models.py:45
 msgid "buy const with tax"
 msgstr "מחיר עלות כולל מע\"מ"
 
-#: .\product\models.py:53
+#: .\product\models.py:55
 msgid "customer catalog number"
 msgstr "מספר קטלוג לקוח"
 
-#: .\product\models.py:68
+#: .\product\models.py:70
 msgid "institutional client price range"
 msgstr "טווח מחירים ללקוח עסקי"
 
-#: .\product\models.py:72
+#: .\product\models.py:74
 msgid "single client price range"
 msgstr "טווח מחירים ללקוח פרטי"
 
-#: .\product\models.py:81
+#: .\product\models.py:86
 msgid "total stock at us"
 msgstr "כמות כוללת אצלנו"
 
@@ -276,15 +276,15 @@ msgstr "ספק"
 msgid "Providers"
 msgstr "ספקים"
 
-#: .\provider\models.py:19
+#: .\provider\models.py:20
 msgid "stocks count"
 msgstr "מספר מלאי"
 
-#: .\stock\models.py:13
+#: .\stock\models.py:12
 msgid "Stock"
 msgstr "מלאי"
 
-#: .\stock\models.py:14
+#: .\stock\models.py:13
 msgid "Stocks"
 msgstr "מלאים"
 

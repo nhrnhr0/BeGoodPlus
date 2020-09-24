@@ -11,7 +11,7 @@ from utils import utils
         
         
 class Product(models.Model):
-
+    
     class Meta():
         verbose_name = _('Product')
         verbose_name_plural = _('Products')
@@ -27,8 +27,7 @@ class Product(models.Model):
     #cost_prices = models.IntegerField(verbose_name=_('cost prices'), null=True, default=0)
     const_inst_client_min = models.IntegerField(verbose_name=_('cost for institucional without tax from'),null=True, default=0)
     const_inst_client_max = models.IntegerField(verbose_name=_('to'),null=True, default=0)
-    const_sing_client_min = models.IntegerField(verbose_name=_('cost for single client with tax from'),null=True, default=0)
-    const_sing_client_max = models.IntegerField(verbose_name=_('to'),null=True, default=0)
+    const_sing_client = models.IntegerField(verbose_name=_('cost for single client with tax'),null=True, default=0)
     #packing = models.ForeignKey(to=PackingType, on_delete=models.CASCADE, default=0)
     suport_printing = models.BooleanField(verbose_name=_('suport printing'), default=True)
     suport_embroidery = models.BooleanField(verbose_name=_('suport embroidery'), default=True) 
@@ -39,7 +38,10 @@ class Product(models.Model):
         return self.name
         
     def buy_cost_tax(self, *args, **kwargs):
-        return self.buy_cost * 1.17
+        if self.buy_cost:
+            return self.buy_cost * 1.17
+        else:
+            return 0.0
     buy_cost_tax.short_description = _("buy const with tax")
         
     
@@ -72,22 +74,46 @@ class Product(models.Model):
     sing_client_range.short_description = _("single client price range")
     
     def total_amount(self, *args, **kwargs):
-        from stock.models import Stock
-        from django.db.models import Sum
+        return self.stocks_totalamount
         
-        stocks = Stock.objects.filter(product=self)
-        res = stocks.aggregate(Sum('amount'))
-        return res['amount__sum']
+        #from stock.models import Stock
+        #from django.db.models import Sum
+        
+        #stocks = Stock.objects.filter(product=self)
+        #stocks = self.stocks
+        #res = stocks.aggregate(Sum('amount'))
+        #return res['amount__sum']
     total_amount.short_description = _("total stock at us")
+    
 
+
+#    def render_image(self, *args, **kwargs):
+        #images = self.images.only('image')
+        #length = len(images)
+#        ret = ''
+        #for i in range(length):
+        #    ret += '<img src="%s" width="150" height="150" />' % images[i].image.url#(settings.MEDIA_URL + image.image.name) 
+#        return mark_safe(ret)
+#    render_image.short_description = _("image")
 
     def render_image(self, *args, **kwargs):
         from productImages.models import ProductImage
-        images = ProductImage.objects.filter(product=self)
-        #print(images.get())
+        #images = ProductImage.objects.filter(product=self)
+        images = self.images.all()
         ret = ''
         for image in images:
             ret += '<img src="%s" width="150" height="150" />' % (settings.MEDIA_URL + image.image.name) 
         return mark_safe(ret)
     render_image.short_description = _("image")
 
+'''
+    def render_image(self, *args, **kwargs):
+        from productImages.models import ProductImage
+        images = ProductImage.objects.filter(product=self)
+        ret = ''
+        for image in images:
+            ret += '<img src="%s" width="150" height="150" />' % (settings.MEDIA_URL + image.image.name) 
+        return mark_safe(ret)
+    render_image.short_description = _("image")
+
+'''
