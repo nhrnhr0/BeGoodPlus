@@ -66,7 +66,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     
-    'debug_toolbar', # TODO: remove in production
+    #'debug_toolbar', # TODO: remove in production
 ]
 # django_user_agents implementation
 # Cache backend is optional, but recommended to speed up user agent parsing
@@ -82,7 +82,7 @@ USER_AGENTS_CACHE = 'default'
 
 
 MIDDLEWARE = [
-    'debug_toolbar.middleware.DebugToolbarMiddleware', # TODO: remove in production
+    #'debug_toolbar.middleware.DebugToolbarMiddleware', # TODO: remove in production
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -98,11 +98,11 @@ MIDDLEWARE = [
 ]
 
 # TODO: remove in production (SQL debug)
-INTERNAL_IPS = [
+'''INTERNAL_IPS = [
     # ...
     '127.0.0.1',
     # ...
-]
+]'''
 
 
 ROOT_URLCONF = 'begoodPlus.urls'

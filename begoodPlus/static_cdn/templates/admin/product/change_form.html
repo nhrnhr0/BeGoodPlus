@@ -19,7 +19,7 @@
         {% include "admin/includes/fieldset.html" %}
     {% endfor %}
     
-    <div>
+    <div id="add_multiple_products_section">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -80,7 +80,7 @@
                 <th>גודל</th>
                 <th>צבע</th>
                 <th>כמות</th>
-                <th>קיים/חדש</th>
+                <th>חדש</th>
                 <th>כמות מעודכנת</th>
             </tr>
         </thead>
@@ -96,15 +96,21 @@
     // this 2 function calculate cartesian product. by calling cartesian
     const f = (a, b) => [].concat(...a.map(d => b.map(e => [].concat(d, e))));
     const cartesian = (a, b, ...c) => (b ? cartesian(f(a, b), ...c) : a);
-    
+    var product_id = undefined;
     $(document).ready(function(){
-    
+        product_id = document.querySelector("#product_form > div > fieldset > div.form-row.field-id.field-category_index > div.fieldBox.field-id > div").innerText 
+        //if(product_id)
+        //add_multiple_products_section
+        if(product_id == '-' || undefined) { // no product id, so it's a new product, can't insert multiple stocks before saving
+            $("#add_multiple_products_section").hide();
+        }
         $('.my-select').select2({
             width: '100%',
         });
         
         // saveing all the providers, packing type, size, color
         information = {};
+        
         
         // ajax calls to get all the options for showing the options to the uesr
         $.ajax({ url: "/api/providers",
@@ -174,8 +180,8 @@
         // genereate all possible combinations 
         var newStocks = cartesian([selected_provider], [selected_packingType], selected_sizes, selected_colors, [amount]);
         // read the id field of the product in the change_form
-        var product_id = document.querySelector("#product_form > div > fieldset > div.form-row.field-id.field-category_index > div.fieldBox.field-id > div").innerText 
         // used to send it with ajax to add all the stocks to the product
+        debugger;
         multiple_stocks_for_insertion = {'stocks': newStocks,
                                         'product': product_id};
 
@@ -219,6 +225,14 @@
                         return dic[i];
                 }
             }
+            debugger;
+            image_src = undefined
+            if (product_row[5]) {
+                image_src = 'admin/img/icon-yes.svg'
+            }
+            else {
+                image_src = 'admin/img/icon-no.svg'
+            }
             // generate table row
             row = `<tr>
                     <td>${find_id(information.providers, product_row[0]).name}</td>
@@ -226,7 +240,7 @@
                     <td>${find_id(information.productSizes, product_row[2]).size}</td>
                     <td>${find_id(information.productColors, product_row[3]).name}</td>
                     <td><input type="number" min="1" value="${product_row[4]}" id="amount_${i}" /></td>
-                    <td> ${product_row[5]} </td>
+                    <td> <img src="{% static "" %}${image_src}" alt="True"> </td>
                     <td> ${product_row[6]} </td>
                 </tr>`
             newTbody += row;

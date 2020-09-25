@@ -7,3 +7,10 @@ https://photos.google.com/share/AF1QipPq-iIKxwB9-DQW6R5qgOGGaPvUfDqgbuBcBkHO6X3e
 
 
 https://photos.google.com/share/AF1QipPq-iIKxwB9-DQW6R5qgOGGaPvUfDqgbuBcBkHO6X3emmdmvnX7NKOaSM1w82GdKg?key=M2JlTElpMlJCeUxDOTZiVG1XaUZzNHVWX1N4cGZB
+
+
+ses-smtp-user.20200925-221629
+SMTP Username:
+AKIAWNTXXG5ZMK4B5AR4
+SMTP Password:
+BOISBR/TRfYsLzTyjxtxs15KTRfx1lCJLPqbwDbpLoNW
