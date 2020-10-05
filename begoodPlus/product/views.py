@@ -56,9 +56,7 @@ def product_detail(request, id, *args, **kwargs):
 
     response = {}
     for d in details:
-        print(d)
         response.setdefault(d["size"], [])
         response[d["size"]].append({"color":d["color"], "cname": d["cname"]})
-    print(response)
     ret = HttpResponse(json.dumps(response), content_type="application/json")
     return ret

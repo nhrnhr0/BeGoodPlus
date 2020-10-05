@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from pages.views import order_form, catalog_view
+from pages.views import order_form, order_form2, order_form3, catalog_view
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path, include
@@ -36,11 +36,14 @@ from stock.views import add_multiple_stocks
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('order/', order_form),
+    path('order2/', order_form2),
+    path('order3/', order_form3),
     path('api/', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('order/products_select/<str:phrash>', products_select),
-    path('order/products_select/', products_select_all),
-    path('order/product_detail/<int:id>', product_detail),
+    path('order/products_select/', products_select_all), # TODO: delete in prod 
+    path('products_select/', products_select_all),
+    path('product_detail/<int:id>', product_detail),
     path('catalog/', catalog_view),
     path('', catalog_view),
     path('api/providers', api_providers), 

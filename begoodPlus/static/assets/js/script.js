@@ -1,5 +1,16 @@
 var all_products;
 $( document ).ready(function() {
+    // init google map api
+    var mapAutocomplete = new google.maps.places.Autocomplete(document.getElementById("addres"))
+    mapAutocomplete.setComponentRestrictions({'country': ['il']});
+    
+    google.maps.event.addListener(mapAutocomplete, 'place_changed', function () {
+      //document.getElementById('addres').value = near_place.name
+    });
+    
+    $(document).on('change', '#addres', function (){
+    
+    }); 
 
     // set date:
     var date = Date();
@@ -24,16 +35,7 @@ $( document ).ready(function() {
     });
 });
 
-var mapAutocomplete = new google.maps.places.Autocomplete(document.getElementById("addres"))
-mapAutocomplete.setComponentRestrictions({'country': ['il']});
 
-google.maps.event.addListener(mapAutocomplete, 'place_changed', function () {
-  //document.getElementById('addres').value = near_place.name
-});
-
-$(document).on('change', '#addres', function (){
-
-});
 
 function toggle_checkbox($, val) {
     if(val == true) {
@@ -144,7 +146,7 @@ function getProductRowIdProvider() {
 
 function generate_row_markup(product_index) {
     var markup =    `<tr>
-        <td><input id="productInput_${product_index}" class="form-control" type="text" dir="rtl" style="margin-left:0px;font-family:Roboto, sans-serif;" placeholder="הכנס מוצר"></td>
+        <td><input style="min-width:270px" id="productInput_${product_index}" class="form-control" type="text" dir="rtl" style="margin-left:0px;font-family:Roboto, sans-serif;" placeholder="הכנס מוצר"></td>
         <td><div id="catalogNumber_${product_index}" ></div></td>
         <td><div id="size_${product_index}"> </div> </td>
         <td><div id="color_${product_index}"></div></td>

@@ -14,3 +14,12 @@ SMTP Username:
 AKIAWNTXXG5ZMK4B5AR4
 SMTP Password:
 BOISBR/TRfYsLzTyjxtxs15KTRfx1lCJLPqbwDbpLoNW
+
+
+- הוספת מוצרים מרובים: לא לאפשר מידה 36 לחולצות לדוגמא
+- לכתוב מחדש את הבוט
+- טופס הזמנה
+- הוספת יצירת קטלוגים
+
+- frade out nexts
+- bigger circles, center number

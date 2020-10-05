@@ -1,16 +1,202 @@
-var all_products;
+$(document).ready(function () {
 
-date_input = document.getElementById("date_inp");
-client_name_input = document.getElementById("client_name_inp");
-private_company_input = document.getElementById("private_company_inp");
-addres_input = document.getElementById("addres_inp");
-tel_input = document.getElementById("tel_inp");
-email_input = document.getElementById("email_inp");
-contact_man_input = document.getElementById("contact_man_inp");
-cell_input = document.getElementById("cell_inp");
-first_next = document.getElementById("firstNext");
+    var current_fs, next_fs, previous_fs; //fieldsets
+    var opacity;
+    var current = 1;
+    var steps = $("fieldset").length;
 
-set_autosave(date_input,"date_input_atuosave");
+    setProgressBar(current);
+
+    $(".next").click(function () {
+        var is_pass = checkInputs(current);
+        if(is_pass) {
+        current_fs = $(this).parent();
+        next_fs = $(this).parent().next();
+
+        //Add Class Active
+        $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+
+        //show the next fieldset
+        next_fs.show();
+        //hide the current fieldset with style
+        current_fs.animate({
+            opacity: 0
+        }, {
+            step: function (now) {
+                // for making fielset appear animation
+                opacity = 1 - now;
+
+                current_fs.css({
+                    'display': 'none',
+                    'position': 'relative'
+                });
+                next_fs.css({
+                    'opacity': opacity
+                });
+            },
+            duration: 500
+        });
+        setProgressBar(++current);
+    }
+    });
+
+    $(".previous").click(function () {
+
+        current_fs = $(this).parent();
+        previous_fs = $(this).parent().prev();
+
+        //Remove class active
+        $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
+
+        //show the previous fieldset
+        previous_fs.show();
+
+        //hide the current fieldset with style
+        current_fs.animate({
+            opacity: 0
+        }, {
+            step: function (now) {
+                // for making fielset appear animation
+                opacity = 1 - now;
+
+                current_fs.css({
+                    'display': 'none',
+                    'position': 'relative'
+                });
+                previous_fs.css({
+                    'opacity': opacity
+                });
+            },
+            duration: 500
+        });
+        setProgressBar(--current);
+    });
+
+    function setProgressBar(curStep) {
+        var percent = parseFloat(100 / steps) * curStep;
+        percent = percent.toFixed();
+        $(".progress-bar")
+            .css("width", percent + "%")
+    }
+
+    $(".submit").click(function () {
+        return false;
+    })
+
+});
+
+
+
+// -------------- form submit validation ----------------------
+//const form = document.getElementById('form');
+const client_name_input = document.getElementById("client_name_inp");
+const private_company_input = document.getElementById("private_company_inp");
+const addres_input = document.getElementById("addres_inp");
+const tel_input = document.getElementById("tel_inp");
+const email_input = document.getElementById("email_inp");
+const contact_man_input = document.getElementById("contact_man_inp");
+const cell_input = document.getElementById("cell_inp");
+
+function checkInputs1_clientInfo() {
+    // trim to remove the whitespaces
+	const client_name_inputValue = client_name_input.value.trim();
+    const private_company_inputValue = private_company_input.value.trim();
+    const addres_inputValue = addres_input.value.trim();
+    const tel_inputValue = tel_input.value.trim();
+    const email_inputValue = email_input.value.trim();
+    const contact_man_inputValue = contact_man_input.value.trim();
+    const cell_inputValue = cell_input.value.trim();
+    
+    var error_found = false;
+	
+	if(client_name_inputValue === '') {
+		setErrorFor(client_name_input, 'שם לקוח לא יכול להיות ריק');
+		error_found = true;
+	} else {
+		setSuccessFor(client_name_input);
+	}
+	
+	if(addres_inputValue == '') {
+        setErrorFor(addres_input, 'כתוכת לא יכולה להיות שדה ריק')
+        error_found = true;
+	}else {
+        setSuccessFor(addres_input);
+	}
+	
+	if(tel_inputValue == '' && cell_inputValue == '') {
+        setErrorFor(cell_input, 'חובה להכניס לפחות מספר טלפון או נייד');
+        setErrorFor(tel_input, 'חובה להכניס לפחות מספר טלפון או נייד');
+        error_found = true;
+    } else {
+        setSuccessFor(cell_input);
+        setSuccessFor(tel_input);
+    }
+    
+    if(isEmail(email_inputValue) == false) {
+        setErrorFor(email_input, 'שדה אימייל ריק או לא תקין');
+        error_found = true;
+    } else {
+        setSuccessFor(email_input);
+    }
+    
+    if(contact_man_inputValue == '') {
+        setErrorFor(contact_man_input, 'חובה להזין איש קשר');
+        error_found = true;
+    } else {
+        setSuccessFor(contact_man_input);
+    }
+    
+    return error_found == false;
+}
+
+function checkInputs2_products() {
+    var oneItemFound = false;
+    var selectedProducts = {};
+    $("#productsTable > tbody > tr").each(function () {
+        debugger;
+        trID = $(this).attr("id");
+        
+        if(trID != undefined) {
+            oneItemFound = true;
+            rowId = trID.substring(3);
+            productInput = $("#productInput_" + rowId);
+            console.log(productInput.val());
+        }
+        
+
+    });
+}
+
+function checkInputs(current_fs) {
+    
+	if(current_fs == 1) {
+	    return checkInputs1_clientInfo();
+	}else if(current_fs == 2) {
+	    return checkInputs2_products();
+	}
+}
+
+function setErrorFor(input, message) {
+	const formControl = input.parentElement;
+	const small = formControl.querySelector('small');
+	formControl.className = 'form-control error';
+	small.innerText = message;
+}
+
+function setSuccessFor(input) {
+	const formControl = input.parentElement;
+	formControl.className = 'form-control success';
+}
+	
+function isEmail(email) {
+	return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
+}
+
+
+
+
+
+/* auto save functionmality and autocomlete for address by google places api */
 set_autosave(client_name_input,"client_name_input_atuosave");
 set_autosave(private_company_input,"private_company_input_atuosave");
 set_autosave(addres_input, "addres_input_atuosave");
@@ -38,14 +224,11 @@ $( document ).ready(function() {
         // addEventListener("change") on called automaticliy on google places api input field
         addres_input.dispatchEvent(new Event('change'));
     });
-
-    // set date:
-    var date = Date();
-    $('#date').attr("placeholder",date)
-
-
+    
+    
+    /*---------------- load all product for products select --------------------- */
     $.ajax({
-        url: "products_select",
+        url: "/products_select/",
         success: function(result) {
             all_products = result
             console.log('got all products');
@@ -60,40 +243,17 @@ $( document ).ready(function() {
 
         }
     });
+    
 });
 
-first_next.addEventListener("click", function(e) {
-    e.preventDefault(); 
-    checkInputs();
-});
 
-function checkInputs() {
-    const client_name_input_value       = client_name_input.value.trim();
-    const private_company_input_value   = private_company_input.value.trim();
-    const addres_input_value            = addres_input.value.trim();
-    const tel_input_value               = tel_input.value.trim();
-    const email_input_value             = email_input.value.trim();
-    const contact_man_input_value       = contact_man_input.value.trim();
-    const cell_input_value              = cell_input.value.trim();
-    if(client_name_input_value == '') {
-        setErrorFor(client_name_input, "לא יכול להיות ריק")
-    }else {
-        setSuccessFor(client_name_input)
-    }
-    //if()
-}
 
-function setErrorFor(input, message) {
-    const formControl = input.parentElement;
-    const small = formControl.querySelector('small');
-    small.innerText = message;
-    formControl.className = 'form-control error';
-}
 
-function setSuccessFor(input) {
-    const formControl = input.parentElement;
-    formControl.className = 'form-control success';
-}
+/** ----------------------------- products table functionality ----------------------------- */
+var all_products;
+
+
+
 function toggle_checkbox($, val) {
     if(val == true) {
         $.removeAttr("disabled");
@@ -110,7 +270,7 @@ function generate_product_options(rowIndex, product, is_copy = false) {
                 
     if(is_copy == false) {
                 $.ajax({
-                    url: "product_detail/" + product.id, 
+                    url: "/product_detail/" + product.id, 
                 success: function(result){
                     ret = `<select name="size" id="size_select_${rowIndex}">`
                     for(var size in result) {
@@ -202,17 +362,24 @@ function getProductRowIdProvider() {
 }
 
 function generate_row_markup(product_index) {
-    var markup =    `<tr>
-        <td><input style="min-width:270px" id="productInput_${product_index}" class="form-control" type="text" dir="rtl" style="margin-left:0px;font-family:Roboto, sans-serif;" placeholder="הכנס מוצר"></td>
+    var markup =    `<tr id="tr_${product_index}">
+        <td><input style="min-width:250px" id="productInput_${product_index}" class="" type="text" dir="rtl" style="margin-left:0px;font-family:Roboto, sans-serif;" placeholder="הכנס מוצר"></td>
         <td><div id="catalogNumber_${product_index}" ></div></td>
         <td><div id="size_${product_index}"> </div> </td>
         <td><div id="color_${product_index}"></div></td>
-        <td><input id="amount_${product_index}" type="number" min="1" max="9999" value="1" class="form-control" /></td>
+        <td><input id="amount_${product_index}" type="number" min="1" max="9999" value="1" class="" /></td>
         
         <td>
             <div>
-                <div class="form-check"><input type="checkbox" class="form-check-input" id="check_print_${product_index}" /><label class="form-check-label" for="check_print_${product_index}" style="padding-right: 15px;margin-right: 0;">תפירה</label></div>
-                <div class="form-check"><input type="checkbox" class="form-check-input" id="check_embro_${product_index}" /><label class="form-check-label" for="check_embro_${product_index}" style="margin-right: 19.5px;">רקמה</label></div>
+                <div class="form-check">
+                    <input type="checkbox" style="width:auto;" class="form-check-inp" id="check_print_${product_index}" />
+                    <label class="form-check-label" for="check_print_${product_index}">תפירה</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" style="width:auto;" class="form-check-inp" id="check_embro_${product_index}" />
+                    <label class="form-check-label" for="check_embro_${product_index}">רקמה</label>
+
+                </div>
             </div>
         </td>
         
