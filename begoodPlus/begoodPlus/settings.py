@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '#r*r40h()nfz(8duh2%98n2=2y$!7hd6law4t#_mkht3xafe(c'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django_extensions',
     'django_admin_index',
     'ordered_model',
-    
+    'admin_adv_search_builder',
 
     # own
     'core',
@@ -55,8 +55,10 @@ INSTALLED_APPS = [
     'stock',
     'order',
     'order_detail',
-
-
+    'glofa_types',
+    'order_detail_addons',
+    'catalogImages',
+    'catalogAlbum',
 
 
     'django.contrib.admin',
@@ -66,7 +68,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     
-    #'debug_toolbar', # TODO: remove in production
+    'debug_toolbar', # TODO: remove in production
 ]
 # django_user_agents implementation
 # Cache backend is optional, but recommended to speed up user agent parsing
@@ -98,11 +100,11 @@ MIDDLEWARE = [
 ]
 
 # TODO: remove in production (SQL debug)
-'''INTERNAL_IPS = [
+INTERNAL_IPS = [
     # ...
     '127.0.0.1',
     # ...
-]'''
+]
 
 
 ROOT_URLCONF = 'begoodPlus.urls'

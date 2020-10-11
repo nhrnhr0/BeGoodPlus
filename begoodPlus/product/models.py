@@ -105,15 +105,3 @@ class Product(models.Model):
             ret += '<img src="%s" width="150" height="150" />' % (settings.MEDIA_URL + image.image.name) 
         return mark_safe(ret)
     render_image.short_description = _("image")
-
-'''
-    def render_image(self, *args, **kwargs):
-        from productImages.models import ProductImage
-        images = ProductImage.objects.filter(product=self)
-        ret = ''
-        for image in images:
-            ret += '<img src="%s" width="150" height="150" />' % (settings.MEDIA_URL + image.image.name) 
-        return mark_safe(ret)
-    render_image.short_description = _("image")
-
-'''

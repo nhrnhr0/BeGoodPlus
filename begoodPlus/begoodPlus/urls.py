@@ -14,10 +14,10 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from pages.views import order_form, order_form2, order_form3, catalog_view
+from pages.views import order_form, order_form2, order_form3, catalog_view, catalog_page, landing_page_view, my_logo_wrapper_view
 from django.conf import settings
 from django.conf.urls.static import static
-from django.urls import path, include
+from django.urls import path, include, re_path
 
 from rest_framework import routers
 from product.views import ProductViewSet
@@ -35,6 +35,7 @@ from productColor.views import api_product_colors
 from stock.views import add_multiple_stocks
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', landing_page_view),
     path('order/', order_form),
     path('order2/', order_form2),
     path('order3/', order_form3),
@@ -44,8 +45,9 @@ urlpatterns = [
     path('order/products_select/', products_select_all), # TODO: delete in prod 
     path('products_select/', products_select_all),
     path('product_detail/<int:id>', product_detail),
-    path('catalog/', catalog_view),
-    path('', catalog_view),
+    re_path(r'catalog/(?P<slug>[\w\d\-\_]+)/$', catalog_page, name='albumView'),
+    path('begood-plus', catalog_view),
+    path('my-logo', my_logo_wrapper_view),
     path('api/providers', api_providers), 
     path('api/packingTypes', api_packing_types),
     path('api/productSizes', api_product_sizes),

@@ -16,7 +16,6 @@ class Provider(models.Model):
     #color = ColorField(verbose_name=_('color'))
     
     def stocks_count(self):
-        print(self)
         return self.stocks.count()
     stocks_count.short_description = _("stocks count")
 

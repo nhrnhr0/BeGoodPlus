@@ -1,16 +1,43 @@
 var all_products;
+
+date_input = document.getElementById("date_inp");
+client_name_input = document.getElementById("client_name_inp");
+private_company_input = document.getElementById("private_company_inp");
+addres_input = document.getElementById("addres_inp");
+tel_input = document.getElementById("tel_inp");
+email_input = document.getElementById("email_inp");
+contact_man_input = document.getElementById("contact_man_inp");
+cell_input = document.getElementById("cell_inp");
+first_next = document.getElementById("firstNext");
+
+set_autosave(date_input,"date_input_atuosave");
+set_autosave(client_name_input,"client_name_input_atuosave");
+set_autosave(private_company_input,"private_company_input_atuosave");
+set_autosave(addres_input, "addres_input_atuosave");
+set_autosave(tel_input, "tel_input_atuosave");
+set_autosave(email_input, "email_input_atuosave");
+set_autosave(contact_man_input, "contact_man_input_atuosave");
+set_autosave(cell_input, "cell_input_atuosave");
+
+function set_autosave(selector, autosave_identifier) {
+    if (sessionStorage.getItem(autosave_identifier)) {
+        selector.value = sessionStorage.getItem(autosave_identifier);
+    }
+    selector.addEventListener("change", function() {
+        sessionStorage.setItem(autosave_identifier, selector.value);
+        console.log(autosave_identifier + ' saved: ' + selector.value);
+    });
+}
+
 $( document ).ready(function() {
     // init google map api
-    var mapAutocomplete = new google.maps.places.Autocomplete(document.getElementById("addres"))
+    var mapAutocomplete = new google.maps.places.Autocomplete(document.getElementById("addres_inp"));
     mapAutocomplete.setComponentRestrictions({'country': ['il']});
-    
     google.maps.event.addListener(mapAutocomplete, 'place_changed', function () {
-      //document.getElementById('addres').value = near_place.name
+        // trigger chage event for autosave.
+        // addEventListener("change") on called automaticliy on google places api input field
+        addres_input.dispatchEvent(new Event('change'));
     });
-    
-    $(document).on('change', '#addres', function (){
-    
-    }); 
 
     // set date:
     var date = Date();
@@ -35,8 +62,38 @@ $( document ).ready(function() {
     });
 });
 
+first_next.addEventListener("click", function(e) {
+    e.preventDefault(); 
+    checkInputs();
+});
 
+function checkInputs() {
+    const client_name_input_value       = client_name_input.value.trim();
+    const private_company_input_value   = private_company_input.value.trim();
+    const addres_input_value            = addres_input.value.trim();
+    const tel_input_value               = tel_input.value.trim();
+    const email_input_value             = email_input.value.trim();
+    const contact_man_input_value       = contact_man_input.value.trim();
+    const cell_input_value              = cell_input.value.trim();
+    if(client_name_input_value == '') {
+        setErrorFor(client_name_input, "לא יכול להיות ריק")
+    }else {
+        setSuccessFor(client_name_input)
+    }
+    //if()
+}
 
+function setErrorFor(input, message) {
+    const formControl = input.parentElement;
+    const small = formControl.querySelector('small');
+    small.innerText = message;
+    formControl.className = 'form-control error';
+}
+
+function setSuccessFor(input) {
+    const formControl = input.parentElement;
+    formControl.className = 'form-control success';
+}
 function toggle_checkbox($, val) {
     if(val == true) {
         $.removeAttr("disabled");

@@ -13,7 +13,7 @@ class productImageInline(admin.TabularInline):
     fields = ('image', 'render_image',)
     readonly_fields = ('render_image',)
 
-    extra = 2
+    extra = 0
     
     show_change_link = True
 
@@ -31,10 +31,19 @@ class stockInline(admin.TabularInline):
     fields = ('provider','productSize', 'productColor', 'packingType', 'providerMakat', 'amount', 'provider_has_stock', 'provider_resupply_date',)
     readonly_fields = ('provider', 'productSize','productColor','packingType','providerMakat',)
     model = Stock
-    extra = 1
+    extra = 0
     
     show_change_link = True
 
+from glofa_types.models import GlofaType
+class GlofaTypeInline(admin.StackedInline):
+    def get_queryset(self, request):
+        qs = super(GlofaTypeInline, self).get_queryset(request)
+        qs = qs.select_related('product',)
+        qs = qs.prefetch_related('supportedProducts',)
+        return qs
+    model = Product.supportedProducts.through
+    fields = ()
 
 
 class ProductAdmin(admin.ModelAdmin):
@@ -42,6 +51,8 @@ class ProductAdmin(admin.ModelAdmin):
     readonly_fields = ('id', 'category_index','customer_catalog_gen','total_amount','buy_cost_tax',)
     list_select_related = ('category',)
     list_filter = ('category','suport_printing', 'suport_embroidery',)
+    inlines = [productImageInline, GlofaTypeInline, stockInline] # productColorInline
+    
     fieldsets = (
         (None, {
             "fields": (
@@ -68,7 +79,7 @@ class ProductAdmin(admin.ModelAdmin):
     
     #exclude = ('category_index',)
     #inlines = [productImageInline,stockInline] # productColorInline
-    inlines = [productImageInline,stockInline] # productColorInline
+    
     
     search_fields = ('name', 'category__title',)
     def get_search_results(self, request, queryset, search_term):

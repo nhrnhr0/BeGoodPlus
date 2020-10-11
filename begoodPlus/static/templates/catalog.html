@@ -1,6 +1,13 @@
 <html >
     <head>
-        <title>ביגוד פלוס - קטלוג</title>
+        {%load static%}
+        {% include  'base.html'%}
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+        <link rel="shortcut icon" href="{%static 'favicon.ico' %}">
+        <!-- <link rel="shortcut icon" href="{%static 'Custom-Icon-Design-Pretty-Office-3-Library.ico' %}"> -->
+        
+        <title>ביגוד פלוס - M.S-GLOBAL</title>
         <style type="text/css">
             body, html
             {
@@ -12,9 +19,7 @@
                 position:absolute; left: 0; right: 0; bottom: 0; top: 0px; 
             }
         </style>
-        {% include  'base.html'%} 
-        {%load static%}
-        <link rel="shortcut icon" href="{%static 'favicon.ico' %}">
+        {% include   'floating_action_button.html' %}
     </head>
     <body>
         <div id="content">

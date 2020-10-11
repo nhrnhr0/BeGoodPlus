@@ -1,12 +1,3 @@
-+ single client range: change to single number
-+ add filters to product and stock
-+ providers: show code
-הדפסה ורקמה
-groups of pringing and niggting ?? wTF ?? 
-https://photos.google.com/share/AF1QipPq-iIKxwB9-DQW6R5qgOGGaPvUfDqgbuBcBkHO6X3emmdmvnX7NKOaSM1w82GdKg?key=M2JlTElpMlJCeUxDOTZiVG1XaUZzNHVWX1N4cGZB
-
-
-https://photos.google.com/share/AF1QipPq-iIKxwB9-DQW6R5qgOGGaPvUfDqgbuBcBkHO6X3emmdmvnX7NKOaSM1w82GdKg?key=M2JlTElpMlJCeUxDOTZiVG1XaUZzNHVWX1N4cGZB
 
 
 ses-smtp-user.20200925-221629
@@ -23,3 +14,11 @@ BOISBR/TRfYsLzTyjxtxs15KTRfx1lCJLPqbwDbpLoNW
 
 - frade out nexts
 - bigger circles, center number
+
+
+
+steps for deploy
+in settings.py:
+    change debug to False
+    comment this line =====> 'debug_toolbar.middleware.DebugToolbarMiddleware', # TODO: remove in production
+    run python manage.py collectstatic
