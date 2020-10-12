@@ -69,9 +69,9 @@ class Product(models.Model):
         return '(' + str(self.const_inst_client_min) + ' - ' +  str(self.const_inst_client_max) + ')'
     inst_client_range.short_description = _("institutional client price range")
 
-    def sing_client_range(self, *args, **kwargs):
-        return '(' + str(self.const_sing_client_min) + ' - ' +  str(self.const_sing_client_max) + ')'
-    sing_client_range.short_description = _("single client price range")
+    #def sing_client_range(self, *args, **kwargs):
+    #    return '(' + str(self.const_sing_client_min) + ' - ' +  str(self.const_sing_client_max) + ')'
+    #sing_client_range.short_description = _("single client price range")
     
     def total_amount(self, *args, **kwargs):
         return self.stocks_totalamount

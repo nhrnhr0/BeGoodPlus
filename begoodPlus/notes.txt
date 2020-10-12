@@ -36,4 +36,4 @@ connect to Putty:
         
     run: supervisorctl restart all
     run service nginx restart
-
+    nginx -t

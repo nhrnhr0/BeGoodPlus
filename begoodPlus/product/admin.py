@@ -47,7 +47,7 @@ class GlofaTypeInline(admin.StackedInline):
 
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('name', 'category','customer_catalog_gen', 'inst_client_range', 'const_sing_client', 'total_amount','render_image','suport_printing', 'suport_embroidery',)
+    list_display = ('name', 'category','customer_catalog_gen', 'inst_client_range','const_sing_client', 'total_amount','render_image','suport_printing', 'suport_embroidery',)
     readonly_fields = ('id', 'category_index','customer_catalog_gen','total_amount','buy_cost_tax',)
     list_select_related = ('category',)
     list_filter = ('category','suport_printing', 'suport_embroidery',)
@@ -61,7 +61,7 @@ class ProductAdmin(admin.ModelAdmin):
                 'name', 'category',
                 ('buy_cost', 'buy_cost_tax'),
                 ('const_inst_client_min', 'const_inst_client_max'),
-                ('const_sing_client'),
+                ('const_sing_client',),
                 ('suport_printing', 'suport_embroidery'),
                 'content','comments',
             ),
@@ -82,13 +82,13 @@ class ProductAdmin(admin.ModelAdmin):
     
     
     search_fields = ('name', 'category__title',)
-    def get_search_results(self, request, queryset, search_term):
-        new_queryset, use_distinct = super().get_search_results(request, queryset, search_term)
+    #def get_search_results(self, request, queryset, search_term):
+        #new_queryset, use_distinct = super().get_search_results(request, queryset, search_term)
         # adding to the original search. search by "customer_catalog_gen"
         #for p in queryset:
         #    if search_term in p.customer_catalog_gen() and p not in new_queryset:
         #        new_queryset |= Product.objects.filter(pk=p.pk)
-        return new_queryset, use_distinct
+        #return new_queryset, use_distinct
         
 
 

@@ -5,6 +5,18 @@
     "version": "0.2.0",
     "configurations": [
 
+<<<<<<< Updated upstream
+=======
+
+
+        {
+            "name": "Python: run odm crowler",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}\\crowler\\crowler.py",
+            "console": "integratedTerminal"
+        },
+>>>>>>> Stashed changes
         {
             "name": "Python: Django",
             "type": "python",
@@ -15,6 +27,7 @@
                 "--noreload"
             ],
             "django": true
+<<<<<<< Updated upstream
         },
         {
             "name": "Python: odm exporter",
@@ -23,5 +36,18 @@
             "program": "${workspaceFolder}\\begoodPlus\\crawler\\crawler.py",
             "args": [],
         },
+=======
+        }, 
+        {
+            "name": "Python: importProducts",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}\\begoodPlus\\manage.py",
+            "args": [
+                "importproducts",
+            ],
+            "django": true
+        }
+>>>>>>> Stashed changes
     ]
 }
