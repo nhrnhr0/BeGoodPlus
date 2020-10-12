@@ -15,7 +15,7 @@ BOISBR/TRfYsLzTyjxtxs15KTRfx1lCJLPqbwDbpLoNW
 - frade out nexts
 - bigger circles, center number
 
-
+add content to title in google
 
 steps for deploy
 in settings.py:
