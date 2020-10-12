@@ -22,3 +22,18 @@ in settings.py:
     change debug to False
     comment this line =====> 'debug_toolbar.middleware.DebugToolbarMiddleware', # TODO: remove in production
     run python manage.py collectstatic
+    
+    
+    
+connect to Putty:
+    cd BeGoodPlus/begoodPlus/
+    pull from git
+    
+    read requeierements.txt
+        activate env: source ../../env/bin/activate
+        pip install -r requirements.txt
+        python manage.py collectstatic
+        
+    run: supervisorctl restart all
+    run service nginx restart
+

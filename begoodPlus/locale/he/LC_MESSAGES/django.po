@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-24 22:23+0300\n"
+"POT-Creation-Date: 2020-10-12 14:29+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,9 +19,43 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n == 2 && n % "
 "1 == 0) ? 1: (n % 10 == 0 && n % 1 == 0 && n > 10) ? 2 : 3;\n"
 
+#: .\catalogAlbum\models.py:7 .\catalogImages\models.py:13
 #: .\category\models.py:7
 msgid "title"
 msgstr "כותרת"
+
+#: .\catalogAlbum\models.py:8
+msgid "slug"
+msgstr ""
+
+#: .\catalogAlbum\models.py:21
+msgid "weight"
+msgstr "משקל"
+
+#: .\catalogImages\models.py:14 .\glofa_types\models.py:12
+msgid "description"
+msgstr "תיאור"
+
+#: .\catalogImages\models.py:16 .\catalogImages\models.py:54
+#: .\productImages\models.py:12 .\product\models.py:107
+msgid "image"
+msgstr "תמונה"
+
+#: .\catalogImages\models.py:17
+msgid "image thumbnail"
+msgstr "תמונה ריבוע"
+
+#: .\catalogImages\models.py:20
+msgid "Catalog image"
+msgstr "תמונת קטלוג"
+
+#: .\catalogImages\models.py:21
+msgid "Catalog images"
+msgstr "תמונות קטלוג"
+
+#: .\catalogImages\models.py:48
+msgid "thumbnail"
+msgstr ""
 
 #: .\category\models.py:10
 msgid "catalog representation"
@@ -55,43 +89,61 @@ msgstr "שם צבע"
 msgid "color"
 msgstr "צבע"
 
-#: .\order\models.py:7
+#: .\glofa_types\models.py:9
+msgid "glofa type"
+msgstr "סוג גלופה"
+
+#: .\glofa_types\models.py:10
+msgid "glofa types"
+msgstr "סוגי גלופה"
+
+#: .\glofa_types\models.py:11
+msgid "number"
+msgstr "מספר"
+
+#: .\glofa_types\models.py:13
+#, fuzzy
+#| msgid "suport printing"
+msgid "supported products"
+msgstr "תומך בהדפסה"
+
+#: .\order\models.py:16
 msgid "Order"
 msgstr "הזמנה"
 
-#: .\order\models.py:8
+#: .\order\models.py:17
 msgid "Orders"
 msgstr "הזמנות"
 
-#: .\order\models.py:10
+#: .\order\models.py:19
 msgid "submit date"
 msgstr "תאריך הגשה"
 
-#: .\order\models.py:11
+#: .\order\models.py:20
 msgid "client name"
 msgstr "שם לקוח"
 
-#: .\order\models.py:12 .\provider\models.py:13
+#: .\order\models.py:21 .\provider\models.py:13
 msgid "private compeny"
 msgstr "חברה פרטית"
 
-#: .\order\models.py:13
+#: .\order\models.py:22
 msgid "addres"
 msgstr "כתובת"
 
-#: .\order\models.py:14
+#: .\order\models.py:23
 msgid "telephone"
 msgstr "טלפון"
 
-#: .\order\models.py:15
+#: .\order\models.py:24
 msgid "email"
 msgstr "אימייל"
 
-#: .\order\models.py:16
+#: .\order\models.py:25
 msgid "contact man"
 msgstr "איש קשר"
 
-#: .\order\models.py:17
+#: .\order\models.py:26
 msgid "cellphone"
 msgstr "נייד"
 
@@ -127,6 +179,30 @@ msgstr "הוסף הדפסה"
 msgid "add embroidery"
 msgstr "הוסף רקמה"
 
+#: .\order_detail_addons\models.py:11 .\order_detail_addons\models.py:12
+#, fuzzy
+#| msgid "Order details"
+msgid "Order detail addons"
+msgstr "פרטי הזמנות"
+
+#: .\order_detail_addons\models.py:15
+#, fuzzy
+#| msgid "suport printing"
+msgid "is print"
+msgstr "תומך בהדפסה"
+
+#: .\order_detail_addons\models.py:16
+msgid "glofa"
+msgstr "גלופה"
+
+#: .\order_detail_addons\models.py:18
+msgid "logo"
+msgstr "לוגו"
+
+#: .\order_detail_addons\models.py:19
+msgid "logo description"
+msgstr "תיאור לוגו"
+
 #: .\packingType\models.py:7
 msgid "Packing type"
 msgstr "שיטת אריזה"
@@ -160,10 +236,6 @@ msgstr "תמונת מוצר"
 msgid "Product images"
 msgstr "תמונות מוצרים"
 
-#: .\productImages\models.py:12 .\product\models.py:107
-msgid "image"
-msgstr "תמונה"
-
 #: .\productImages\models.py:13 .\product\models.py:16
 msgid "Product"
 msgstr "מוצר"
@@ -176,35 +248,35 @@ msgstr "גודל מוצר"
 msgid "Product sizes"
 msgstr "גדלי מוצרים"
 
-#: .\product\admin.py:84
+#: .\product\admin.py:97
 msgid " Selected Record(s) Marked as Active pringing Successfully"
 msgstr " מוצרים מסומנים סומנו כתומכים בהדפסה"
 
-#: .\product\admin.py:85
+#: .\product\admin.py:98
 msgid "make prining active"
 msgstr "הפוך הדפסה לזמינה"
 
-#: .\product\admin.py:89
+#: .\product\admin.py:102
 msgid " Selected Record(s) Marked as Active embroidery Successfully"
 msgstr " מוצרים מסומנים סומנו כתומכים ברקמה"
 
-#: .\product\admin.py:90
+#: .\product\admin.py:103
 msgid "make embroidery active"
 msgstr "הפוך רקמה לזמינה"
 
-#: .\product\admin.py:94
+#: .\product\admin.py:107
 msgid " Selected Record(s) Marked as Inactive pringing Successfully"
 msgstr " מוצרים מסומנים סומנו כלא תומכי הדפסה"
 
-#: .\product\admin.py:95
+#: .\product\admin.py:108
 msgid "make prining inactive"
 msgstr "הפוך הדפסה ללא זמינה"
 
-#: .\product\admin.py:99
+#: .\product\admin.py:112
 msgid " Selected Record(s) Marked as Inactive embroidery Successfully"
 msgstr " מוצרים מסומנים סומנו כלא תומכי רקמה"
 
-#: .\product\admin.py:100
+#: .\product\admin.py:113
 msgid "make embroidery inactive"
 msgstr "הפוך רקמה ללא זמינה"
 

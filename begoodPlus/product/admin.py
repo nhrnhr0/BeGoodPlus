@@ -85,10 +85,11 @@ class ProductAdmin(admin.ModelAdmin):
     def get_search_results(self, request, queryset, search_term):
         new_queryset, use_distinct = super().get_search_results(request, queryset, search_term)
         # adding to the original search. search by "customer_catalog_gen"
-        for p in queryset:
-            if search_term in p.customer_catalog_gen() and p not in new_queryset:
-                new_queryset |= Product.objects.filter(pk=p.pk)
+        #for p in queryset:
+        #    if search_term in p.customer_catalog_gen() and p not in new_queryset:
+        #        new_queryset |= Product.objects.filter(pk=p.pk)
         return new_queryset, use_distinct
+        
 
 
     def make_prining_active(modeladmin, request, queryset):

@@ -27,7 +27,7 @@ class Product(models.Model):
     #cost_prices = models.IntegerField(verbose_name=_('cost prices'), null=True, default=0)
     const_inst_client_min = models.IntegerField(verbose_name=_('cost for institucional without tax from'),null=True, default=0)
     const_inst_client_max = models.IntegerField(verbose_name=_('to'),null=True, default=0)
-    const_sing_client = models.IntegerField(verbose_name=_('cost for single client with tax'),null=True, default=0)
+    const_sing_client = models.IntegerField(verbose_name=_('cost for single client with tax'), default=0)
     #packing = models.ForeignKey(to=PackingType, on_delete=models.CASCADE, default=0)
     suport_printing = models.BooleanField(verbose_name=_('suport printing'), default=True)
     suport_embroidery = models.BooleanField(verbose_name=_('suport embroidery'), default=True) 
