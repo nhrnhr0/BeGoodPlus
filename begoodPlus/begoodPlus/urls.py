@@ -14,7 +14,8 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from pages.views import order_form, order_form2, order_form3, catalog_view, catalog_page, landing_page_view, my_logo_wrapper_view
+from pages.views import order_form, order_form2, order_form3,catalog_view,catalog_page, landing_page_view, my_logo_wrapper_view, catalog_page2
+                        
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path, include, re_path
@@ -34,6 +35,7 @@ from productSize.views import api_product_sizes
 from productColor.views import api_product_colors
 from stock.views import add_multiple_stocks
 urlpatterns = [
+    #path('jet/', include('jet.urls', 'jet')),
     path('admin/', admin.site.urls),
     path('', landing_page_view),
     path('order/', order_form),
@@ -45,7 +47,9 @@ urlpatterns = [
     path('order/products_select/', products_select_all), # TODO: delete in prod 
     path('products_select/', products_select_all),
     path('product_detail/<int:id>', product_detail),
-    re_path(r'catalog/(?P<slug>[\w\d\-\_]+)/$', catalog_page, name='albumView'),
+    #re_path(r'catalog/(?P<slug>[\w\d\-\_]+)/$', catalog_page, name='albumView'),
+    re_path(r'catalog/(?P<hierarchy>.+)/$', catalog_page, name='albumView'),
+    re_path(r'catalog2/(?P<hierarchy>.+)/$', catalog_page2, name='albumView2'),
     path('begood-plus', catalog_view),
     path('my-logo', my_logo_wrapper_view),
     path('api/providers', api_providers), 

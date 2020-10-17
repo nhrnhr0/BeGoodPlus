@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="he">
 <head>
     {%load static%}
     {% include  'base.html'%} 
@@ -14,6 +14,7 @@
 Fluid Gallery Template
 http://www.templatemo.com/tm-500-fluid-gallery
 -->
+    
     <!-- load stylesheets -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600">  
     <!-- Google web font "Open Sans" -->
@@ -21,7 +22,6 @@ http://www.templatemo.com/tm-500-fluid-gallery
     <!-- Bootstrap style -->
     <link rel="stylesheet" href="{%static 'assets/css/hero-slider-style.css' %}">                              
     <!-- Hero slider style (https://codyhouse.co/gem/hero-slider/) -->
-    <link rel="stylesheet" href="{%static 'assets/css/magnific-popup.css' %}">                                 
     <!-- Magnific popup style (http://dimsemenov.com/plugins/magnific-popup/) -->
     <link rel="stylesheet" href="{%static 'assets/css/templatemo-style.css' %}">                                   
 
@@ -31,7 +31,10 @@ http://www.templatemo.com/tm-500-fluid-gallery
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
-    <link ret="stylesheet" href="{%static 'assets/css/Responsive-And-Animated-Navbar-With-Multi-level-Drodown.css' %}">
+    <link rel="stylesheet" href="{%static 'assets/css/Responsive-And-Animated-Navbar-With-Multi-level-Drodown.css'%}">
+    
+    <link rel="stylesheet" href="{%static 'assets/css/magnific-popup.css' %}">                                 
+    
     
     <link rel="stylesheet" href="{%static 'assets/css/catalog_page.css'%}">
 
@@ -51,150 +54,12 @@ http://www.templatemo.com/tm-500-fluid-gallery
 </head>
 
     <body>
-        <header>
-            <div class="container">
-                <input type="checkbox" name="" id="check">
-                
-                <div class="logo-container">
-                    <h3 class="logo">Brand<span>Name</span></h3>
-                </div>
-    
-                <div class="nav-btn">
-                    <div class="nav-links">
-                        <ul>
-                            <li class="nav-link" style="--i: .6s">
-                                <a href="#">Home</a>
-                            </li>
-                            <li class="nav-link" style="--i: .85s">
-                                <a href="#">Menu<i class="fas fa-caret-down"></i></a>
-                                <div class="dropdown">
-                                    <ul>
-                                        <li class="dropdown-link">
-                                            <a href="#">Link 1</a>
-                                        </li>
-                                        <li class="dropdown-link">
-                                            <a href="#">Link 2</a>
-                                        </li>
-                                        <li class="dropdown-link">
-                                            <a href="#">Link 3<i class="fas fa-caret-down"></i></a>
-                                            <div class="dropdown second">
-                                                <ul>
-                                                    <li class="dropdown-link">
-                                                        <a href="#">Link 1</a>
-                                                    </li>
-                                                    <li class="dropdown-link">
-                                                        <a href="#">Link 2</a>
-                                                    </li>
-                                                    <li class="dropdown-link">
-                                                        <a href="#">Link 3</a>
-                                                    </li>
-                                                    <li class="dropdown-link">
-                                                        <a href="#">More<i class="fas fa-caret-down"></i></a>
-                                                        <div class="dropdown second">
-                                                            <ul>
-                                                                <li class="dropdown-link">
-                                                                    <a href="#">Link 1</a>
-                                                                </li>
-                                                                <li class="dropdown-link">
-                                                                    <a href="#">Link 2</a>
-                                                                </li>
-                                                                <li class="dropdown-link">
-                                                                    <a href="#">Link 3</a>
-                                                                </li>
-                                                                <div class="arrow"></div>
-                                                            </ul>
-                                                        </div>
-                                                    </li>
-                                                    <div class="arrow"></div>
-                                                </ul>
-                                            </div>
-                                        </li>
-                                        <li class="dropdown-link">
-                                            <a href="#">Link 4</a>
-                                        </li>
-                                        <div class="arrow"></div>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="nav-link" style="--i: 1.1s">
-                                <a href="#">Services<i class="fas fa-caret-down"></i></a>
-                                <div class="dropdown">
-                                    <ul>
-                                        <li class="dropdown-link">
-                                            <a href="#">Link 1</a>
-                                        </li>
-                                        <li class="dropdown-link">
-                                            <a href="#">Link 2</a>
-                                        </li>
-                                        <li class="dropdown-link">
-                                            <a href="#">Link 3<i class="fas fa-caret-down"></i></a>
-                                            <div class="dropdown second">
-                                                <ul>
-                                                    <li class="dropdown-link">
-                                                        <a href="#">Link 1</a>
-                                                    </li>
-                                                    <li class="dropdown-link">
-                                                        <a href="#">Link 2</a>
-                                                    </li>
-                                                    <li class="dropdown-link">
-                                                        <a href="#">Link 3</a>
-                                                    </li>
-                                                    <li class="dropdown-link">
-                                                        <a href="#">More<i class="fas fa-caret-down"></i></a>
-                                                        <div class="dropdown second">
-                                                            <ul>
-                                                                <li class="dropdown-link">
-                                                                    <a href="#">Link 1</a>
-                                                                </li>
-                                                                <li class="dropdown-link">
-                                                                    <a href="#">Link 2</a>
-                                                                </li>
-                                                                <li class="dropdown-link">
-                                                                    <a href="#">Link 3</a>
-                                                                </li>
-                                                                <div class="arrow"></div>
-                                                            </ul>
-                                                        </div>
-                                                    </li>
-                                                    <div class="arrow"></div>
-                                                </ul>
-                                            </div>
-                                        </li>
-                                        <li class="dropdown-link">
-                                            <a href="#">Link 4</a>
-                                        </li>
-                                        <div class="arrow"></div>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="nav-link" style="--i: 1.35s">
-                                <a href="#">About</a>
-                            </li>
-                        </ul>
-                    </div>
-    
-                    <div class="log-sign" style="--i: 1.8s">
-                        <a href="#" class="btn transparent">Log in</a>
-                        <a href="#" class="btn solid">Sign up</a>
-                    </div>
-                </div>
-    
-                <div class="hamburger-menu-container">
-                    <div class="hamburger-menu">
-                        <div></div>
-                    </div>
-                </div>
-            </div>
-        </header>
-        <main>
-            <section>
-                <div class="overlay"></div>
-            </section>
-        </main>
+        {%include 'website_navbar.html' %}
         <!-- Content -->
         <div class="cd-hero">
 
             <!-- Navigation -->        
+            <!--
             <div class="cd-slider-nav">
                 <nav class="navbar">
                     <div class="tm-navbar-bg">
@@ -209,18 +74,17 @@ http://www.templatemo.com/tm-500-fluid-gallery
                                 {% if sub_categories %}
                                     {% for i in sub_categories %}
                                         <li class="nav-item">
-                                            <!--class="nav-link" --> 
                                             <a class="" href="{{ i.get_absolute_url }}"> {{ i.title }}</a>
                                         </li>
                                     {% endfor %}
                                 {% endif %}
-                                <!--
+                                
                                 <li class="nav-item active selected">
                                     <a class="nav-link" href="#0" data-no="1">{{album_title}} <span class="sr-only">(current)</span></a>
                                 </li>                                
-                                -->
+                                
 								
-								<!--
+								
                                 <li class="nav-item">
                                     <a class="nav-link" href="#0" data-no="3">3rd fluid</a>
                                 </li>
@@ -230,14 +94,15 @@ http://www.templatemo.com/tm-500-fluid-gallery
                                 <li class="nav-item">
                                     <a class="nav-link" href="#0" data-no="5">Message</a>
                                 </li>
-								-->
+								
                             </ul>
                         </div>                        
                     </div>
 
                 </nav>
             </div> 
-
+            -->
+        </div> 
             <ul class="cd-hero-slider">
 
                 <!-- Page 1 Gallery One -->
@@ -347,6 +212,11 @@ http://www.templatemo.com/tm-500-fluid-gallery
                     $('#tmNavbar').collapse('hide');
 
                     //adjustHeightOfPage($(this).data("no")); // Adjust page height       
+                });
+                $('.gallery-one').magnificPopup({
+                    delegate: 'a', // child items selector, by clicking on it popup will open
+                    type: 'image',
+                    gallery:{enabled:true}                
                 });
 
                 /* Browser resized 

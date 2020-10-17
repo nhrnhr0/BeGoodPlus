@@ -27,6 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+MY_DOMAIN = 'https://ms-global.co.il' #'http://127.0.0.1:8000'
+
 
 # Application definition
 
@@ -41,6 +43,9 @@ INSTALLED_APPS = [
     'django_admin_index',
     'ordered_model',
     'admin_adv_search_builder',
+    'mptt',
+    'django_mptt_admin',
+    #'jet',
 
     # own
     'core',
@@ -68,7 +73,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     
-    'debug_toolbar', # TODO: remove in production
+    #'debug_toolbar', # TODO: remove in production
 ]
 # django_user_agents implementation
 # Cache backend is optional, but recommended to speed up user agent parsing
@@ -118,8 +123,12 @@ TEMPLATES = [
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
+                #'django.core.context_processors.request', #my code
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                
+                # own
+                'pages.context_processors.navbar_load',
             ],
         },
     },
@@ -198,3 +207,8 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_POST = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_PASSWORD = "6464Ff8@@"
+
+
+# jet settings 
+
+JET_SIDE_MENU_COMPACT = True
