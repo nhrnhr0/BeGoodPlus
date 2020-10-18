@@ -63,15 +63,17 @@ class CatalogAlbum(MPTTModel):
             full_slug = parent.slug + '/' + full_slug
             parent = parent.parent
         full_slug = full_slug  + self.slug
+        if full_slug == '':
+            return ''
         return reverse('albumView', args=[full_slug])
-        
+    get_absolute_url.short_description = 'URL'
+
     def view_in_website_link(self, *args, **kwargs):
         ret = '<a href="%s"> צפייה באתר %s</a>' %(self.get_absolute_url(), self.title)
         return mark_safe(ret)
     view_in_website_link.short_description = _("view in website")
         #return ret
     
-    get_absolute_url.short_description = 'URL'
 
 class ThroughImage(models.Model):
     catalogImage = models.ForeignKey(CatalogImage, on_delete=models.CASCADE)

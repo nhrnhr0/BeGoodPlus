@@ -13,11 +13,14 @@
         
         <link rel="stylesheet" href="{%static 'assets/css/templatemo-style.css' %}">     
         <link rel="stylesheet" href="{%static 'assets/css/magnific-popup.css' %}">                                 
-
+        <!-- background-color: rgba(56, 182, 230, 0.62); -->
         <style>
             body {
-                background-color: rgba(56, 182, 230, 0.62);
                 
+                background-color: #aa97f4;
+            }
+            .grid-item figure img {
+                opacity: 0.9;
             }
             .loaded {
                 overflow:scroll;
@@ -44,7 +47,6 @@
                             <a href="{% get_media_prefix %}/{{image.image}}">{{image.image}}</a>
                         </figcaption>           
                     </figure>
-                    
                 </div>
             {%endfor%}
         </div>
