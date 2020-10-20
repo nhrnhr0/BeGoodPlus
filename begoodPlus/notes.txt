@@ -37,3 +37,9 @@ connect to Putty:
     run: supervisorctl restart all
     run: service nginx restart
     nginx -t
+
+
+
+TODO: add h1 to catalog_page
+TODO: facebook
+TODO: mail design

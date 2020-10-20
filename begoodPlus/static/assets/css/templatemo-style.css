@@ -558,7 +558,7 @@ figure.effect-sadie:hover p {
 }
 
 .grid-item figure figcaption > a {
-    z-index: 1000;
+    z-index: 0; /* MY CODE, original is z-index:1000*/
     text-indent: 200%;
     white-space: nowrap;
     font-size: 0;

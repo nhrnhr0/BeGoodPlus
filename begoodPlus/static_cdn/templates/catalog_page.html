@@ -19,6 +19,9 @@
                 
                 background-color: #aa97f4;
             }
+            h1 {
+                direction: rtl;
+            }
             .grid-item figure img {
                 opacity: 0.9;
             }
@@ -35,6 +38,7 @@
     <body>
     
         {% include   'website_navbar.html' %}
+        <h1>{{album_title}}</h1>
         <div class="tm-img-gallery gallery-one">
             {%for image in images.all%}
             <!-- Gallery One pop up connected with JS code below -->
