@@ -43,3 +43,6 @@ connect to Putty:
 TODO: add h1 to catalog_page
 TODO: facebook
 TODO: mail design
+
+
+ubuntu@ip-172-31-4-59:~/BeGoodPlus/begoodPlus$ cp -v db.sqlite3 ../../db_backup/                                             $(date +%y_%m_%d).db.sqlite3
