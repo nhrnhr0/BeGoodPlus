@@ -1,19 +1,24 @@
 from django.contrib import admin
 
-from catalogAlbum.models import CatalogAlbum
+from catalogAlbum.models import CatalogAlbum, ThroughImage
 
 from catalogImages.models import CatalogImage
+from adminsortable.admin import (SortableAdmin, SortableTabularInline)
 
+'''
 class CatalogImageInline(admin.TabularInline):
     model = CatalogAlbum.images.through
     ordering = ('weight',)
-# Register your models here.
+'''
+class CatalogImageInline(SortableTabularInline):
+    model =  ThroughImage
+
 
 from mptt.admin import MPTTModelAdmin
 from mptt.admin import DraggableMPTTAdmin
 from django.db.models import Count
 
-class CatalogAlbumAdmin(DraggableMPTTAdmin):
+class CatalogAlbumAdmin(SortableAdmin, DraggableMPTTAdmin):
     inlines = (CatalogImageInline,)
     list_display = ('tree_actions','indented_title', 'slug', 'get_absolute_url','view_in_website_link','related_images_count',)#'get_absolute_url')
     readonly_fields = ('view_in_website_link','related_images_count',)

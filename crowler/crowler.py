@@ -20,7 +20,7 @@ def main():
 def login():
     driver.get("https://app.site123.com/manager/wizard.php?w=3809992&from=dash")
     driver.find_element_by_id('username').send_keys('m.s.globalspam@gmail.com')
-    driver.find_element_by_id('password').send_keys('MSGLOBAL123')
+    driver.find_element_by_id('password').send_keys('MSglobal2020')
     driver.find_element_by_id('login-submit').click()
 
 
