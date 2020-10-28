@@ -75,12 +75,17 @@ class CatalogAlbum(MPTTModel):
         #return ret
     
 
-class ThroughImage(models.Model):
-    catalogImage = models.ForeignKey(CatalogImage, on_delete=models.CASCADE)
+from adminsortable.fields import SortableForeignKey
+from adminsortable.models import Sortable
+
+class ThroughImage(Sortable):
+    #catalogImage = models.ForeignKey(CatalogImage, on_delete=models.CASCADE)
+    catalogImage = SortableForeignKey(CatalogImage, on_delete=models.CASCADE)
     catalogAlbum = models.ForeignKey(CatalogAlbum, on_delete=models.CASCADE)
-    weight = models.IntegerField(verbose_name=_("weight"))
+    #weight = models.IntegerField(verbose_name=_("weight"))
     
-    class Meta:
-        ordering = ['weight']
-        unique_together = ('catalogAlbum', 'weight',)   
+    class Meta(Sortable.Meta):
+        #ordering = ['weight']
+        #unique_together = ('catalogAlbum', 'weight',)
+        pass
 
