@@ -20,7 +20,7 @@ class Command(BaseCommand):
             i= 0
             for product in data:
                 print(i)
-                print(product)
+                #print(product)
                 title = product['title']
                 description = product['description']
                 category = product['category']
@@ -29,10 +29,20 @@ class Command(BaseCommand):
                 except:
                     categoryObj = Category(title=category, catalog_rep='A')
                     categoryObj.save()
-                dbProduct = Product(name= title,content=(description or ''), category=categoryObj)
-                print(dbProduct.name)
-                print(dbProduct.content)
-                print(dbProduct.category)
+                #dbProduct = Product(name= title,content=(description or ''), category=categoryObj)
+                dbProductList = Product.objects.filter(name=title, category=categoryObj)
+                dbProduct = dbProductList.first()
+                if dbProduct == None:
+                    dbProduct = Product(category=categoryObj, name=title, content =(description or ''),buy_cost=0)
+                    print('creating new product ', dbProduct.name, 'description: ', dbProduct.content)
+                else:
+                    dbProduct.content = description or ''
+                    print('updating product ', dbProduct.name, 'description: ', dbProduct.content)
+                
+                
+                #print(dbProduct.name)
+                #print(dbProduct.content)
+                #print(dbProduct.category)
                 dbProduct.save()
 
                 if 'image1' in product:
@@ -62,7 +72,7 @@ class Command(BaseCommand):
                     sizes = ['one size']
                 import itertools
                 productStuckList = list(itertools.product(colors,sizes))
-                print(productStuckList)
+                #print(productStuckList)
 
                 from provider.models import Provider
                 
@@ -100,14 +110,15 @@ class Command(BaseCommand):
                         dbProductColor.save()
                         
 
-                    stock = Stock(provider=defultProvider, productSize=dbProductSize, productColor=dbProductColor, product=dbProduct, packingType=defultPackingType)
+                    stock, created = Stock.objects.update_or_create(provider=defultProvider, productSize=dbProductSize, productColor=dbProductColor, product=dbProduct, packingType=defultPackingType)
+                    print(created, stock.product, stock.productSize, stock.productColor)
                     stock.save()
 
 
 
 
 
-                 
+            
                 i+=1
 
         #end_time = time.time()
