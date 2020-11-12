@@ -21,7 +21,7 @@ class Stock(models.Model):
     providerMakat = models.CharField(verbose_name=_("provider makat"), max_length=50, blank=True)
     amount = models.IntegerField(verbose_name=_('stock at us'), default=0)
     provider_has_stock = models.BooleanField(verbose_name=_("exist at provider"), default=True)
-    provider_resupply_date = models.DateTimeField(verbose_name=_("provider resupply date"), null=True)
+    provider_resupply_date = models.DateTimeField(verbose_name=_("provider resupply date"), null=True, blank=True)
 
     def catalog_part(self):
         from product.models import Product

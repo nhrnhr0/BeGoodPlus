@@ -14,5 +14,5 @@ class ProductSize(models.Model):
     code = models.CharField(_('code'), default=0, max_length=2)
 
     def __str__(self):
-        return self.size
+        return self.size + ' (' + self.code + ')'
 

@@ -23,17 +23,20 @@ from django.urls import path, include, re_path
 from rest_framework import routers
 from product.views import ProductViewSet
 from category.views import CategoryViewSet
-from productImages.views import ProductImageSerializer
+from productImages.views import ProductImageViewSet
+from catalogImages.views import CatalogImageViewSet
 from product.views import products_select_all, products_select, product_detail
 router = routers.DefaultRouter()
 router.register(r'products', ProductViewSet)
 router.register(r'categories', CategoryViewSet)
-router.register(r'productImages', ProductImageSerializer)
+router.register(r'productImages', ProductImageViewSet)
+router.register(r'CatalogImages', CatalogImageViewSet)
 from provider.views import api_providers
 from packingType.views import api_packing_types
 from productSize.views import api_product_sizes
 from productColor.views import api_product_colors
 from stock.views import add_multiple_stocks
+from clientLikedImages.views import add_liked_images
 urlpatterns = [
     #path('jet/', include('jet.urls', 'jet')),
     path('admin/', admin.site.urls),
@@ -57,6 +60,7 @@ urlpatterns = [
     path('api/productSizes', api_product_sizes),
     path('api/productColors', api_product_colors),
     path('api/add_multiple_stocks', add_multiple_stocks),
+    path('add_liked_images', add_liked_images),
 ]
 
 if settings.DEBUG:

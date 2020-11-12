@@ -10,7 +10,7 @@ from django.conf import settings
 class CatalogImage(models.Model):
 
         
-    title = models.CharField(max_length=120, verbose_name=_("title"))
+    title = models.CharField(max_length=120, verbose_name=_("title"), unique=True)
     description = models.TextField(verbose_name=_("description"))
     
     image = models.ImageField(verbose_name=_("image"))
