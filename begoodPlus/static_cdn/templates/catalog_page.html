@@ -89,7 +89,6 @@
         .messages {
             width: 31px;
             height: 19px;
-            background-image: url(https://i.imgur.com/aoXZqPc.gif);
             background-position: 0 0;
             background-repeat: no-repeat;
             display: inline-block;
@@ -306,7 +305,8 @@
             width: 790px;
             background: #fff;
             border-radius: 10px;
-            padding: 72px 55px 90px;
+            /*padding: 72px 55px 90px;*/
+            padding: 20px 45px 90px;
             height: 85vh;
             position: relative;
         }
@@ -488,7 +488,7 @@
 
         @media(max-width:576px) {
             .wrap-contact2 {
-                padding: 72px 15px 90px
+                padding: 20px 15px 90px
             }
         }
 
@@ -634,7 +634,9 @@
 
 
         <div class="container-contact2 hidden">
+            
             <div class="wrap-contact2">
+                <div class="cart-exit"> X </div>
                 <div class="wrap-contact2-scroll">
                     <form id="ContactForm" class="contact2-form validate-form" method="POST" action="/add_liked_images">
                         {% csrf_token %}
@@ -648,6 +650,12 @@
                         <div class="wrap-input2 validate-input" data-validate="מייל לא תקין">
                             <input class="input2" type="text" name="email">
                             <span class="focus-input2" data-placeholder="אימייל"></span>
+                        </div>
+                        <div class="wrap-input2"  >
+                            <input class="input" type="checkbox" name="send_copy">
+
+                            <span class="input2"style="display:inline;"> אני מעוניין לקבל עותק למייל</span>
+
                         </div>
                         <div class="wrap-input2 validate-input" data-validate="שדה חובה">
                             <input class="input2" type="text" name="tel">
@@ -783,6 +791,9 @@
             $('.cart').click(function () {
                 toggle_contact_form();
             });
+            $('.cart-exit').click(function () {
+                toggle_contact_form();
+            });
             $(".input2").on("input", function(e) {
                 var input = $(this);
                 var val = input.val();
@@ -795,7 +806,6 @@
             });
             
             $("#submitContactForm").click(function(e) {
-                console.log('btn click');
                 
                 // validate form
                 var errors = false;
@@ -829,6 +839,8 @@
                         // redirect to the same url
                         window.location.href = './';
                     },'json');
+                    $("#submitContactForm").prop('disabled', true);
+                    $("#submitContactForm").html('<i class="fa fa-spinner fa-spin"></i>שולח');
                     return false;
                 });
             });

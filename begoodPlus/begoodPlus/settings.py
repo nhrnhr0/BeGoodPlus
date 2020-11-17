@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'mptt',
     'django_mptt_admin',
     'adminsortable',
+    'admin_numeric_filter',
     #'jet',
 
     # own
@@ -202,15 +203,21 @@ STATICFILES_DIRS = [
 
 MEDIA_URL= '/media/'
 MEDIA_ROOT = os.path.join(STATIC_ROOT, 'media_root/')
-
+'''
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST_USER = "ronionsegal@gmail.com"
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_POST = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_PASSWORD = "6464Ff8@@"
-
-
-# jet settings 
-
-JET_SIDE_MENU_COMPACT = True
+'''
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_HOST = 'email-smtp.us-east-2.amazonaws.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+EMAIL_HOST_USER = 'AKIAWNTXXG5ZM5IBIUEQ'
+EMAIL_HOST_PASSWORD = 'BHJY50/zwukaolno7+fLwJvkxvNT1Q20gUWyWvOzQ1MK'
+# from django.core.mail import send_mail
+# send_mail(subject='hey', message='message', from_email='bot@ms-global.co.il', recipient_list=['nhrnhr0@gmail.com'])

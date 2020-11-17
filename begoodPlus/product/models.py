@@ -22,12 +22,7 @@ class Product(models.Model):
     #running_code = models.IntegerField(verbose_name='sub-catalog')
     category_index = models.IntegerField()
     
-    buy_cost = models.PositiveSmallIntegerField(verbose_name=_('buy cost'))
 
-    #cost_prices = models.IntegerField(verbose_name=_('cost prices'), null=True, default=0)
-    const_inst_client_min = models.IntegerField(verbose_name=_('cost for institucional without tax from'),null=True, default=0)
-    const_inst_client_max = models.IntegerField(verbose_name=_('to'),null=True, default=0)
-    const_sing_client = models.IntegerField(verbose_name=_('cost for single client with tax'), default=0)
     #packing = models.ForeignKey(to=PackingType, on_delete=models.CASCADE, default=0)
     suport_printing = models.BooleanField(verbose_name=_('suport printing'), default=True)
     suport_embroidery = models.BooleanField(verbose_name=_('suport embroidery'), default=True) 
@@ -37,12 +32,7 @@ class Product(models.Model):
     def __str__(self):
         return self.name
         
-    def buy_cost_tax(self, *args, **kwargs):
-        if self.buy_cost:
-            return self.buy_cost * 1.17
-        else:
-            return 0.0
-    buy_cost_tax.short_description = _("buy const with tax")
+    
         
     
 
@@ -64,11 +54,8 @@ class Product(models.Model):
         self.customer_catalog = self.customer_catalog_gen(args,kwargs) # use product's id
         super(Product, self).save(*args, **kwargs)
         pass
-
-    def inst_client_range(self, *args, **kwargs):
-        return '(' + str(self.const_inst_client_min) + ' - ' +  str(self.const_inst_client_max) + ')'
-    inst_client_range.short_description = _("institutional client price range")
-
+        
+    
     #def sing_client_range(self, *args, **kwargs):
     #    return '(' + str(self.const_sing_client_min) + ' - ' +  str(self.const_sing_client_max) + ')'
     #sing_client_range.short_description = _("single client price range")

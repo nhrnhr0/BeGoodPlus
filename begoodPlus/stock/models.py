@@ -22,6 +22,24 @@ class Stock(models.Model):
     amount = models.IntegerField(verbose_name=_('stock at us'), default=0)
     provider_has_stock = models.BooleanField(verbose_name=_("exist at provider"), default=True)
     provider_resupply_date = models.DateTimeField(verbose_name=_("provider resupply date"), null=True, blank=True)
+    
+    buy_cost = models.FloatField(verbose_name=_('buy cost'), default=0)
+    #cost_prices = models.IntegerField(verbose_name=_('cost prices'), null=True, default=0)
+    const_inst_client_min = models.FloatField(verbose_name=_('cost for institucional without tax from'),null=True, default=0)
+    const_inst_client_max = models.FloatField(verbose_name=_('to'),null=True, default=0)
+    const_sing_client = models.FloatField(verbose_name=_('cost for single client with tax'), default=0)
+    
+    def buy_cost_tax(self, *args, **kwargs):
+        if self.buy_cost:
+            return self.buy_cost * 1.17
+        else:
+            return 0.0
+    buy_cost_tax.short_description = _("buy const with tax")
+
+    def inst_client_range(self, *args, **kwargs):
+        return '(' + str(self.const_inst_client_min) + ' - ' +  str(self.const_inst_client_max) + ')'
+    inst_client_range.short_description = _("institutional client price range")
+
 
     def catalog_part(self):
         from product.models import Product
