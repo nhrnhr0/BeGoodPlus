@@ -4,6 +4,7 @@ begoodPlus/db.sqlite3
 **/migrations/**
 !**/migrations
 !**/migrations/__init__.py
+**/__pycache__/**
 *.pyc
 begoodPlus/begoodPlus/__pycache__/settings.cpython-38.pyc
 begoodPlus/begoodPlus/__pycache__/settings.cpython-38.pyc
@@ -30,3 +31,4 @@ begoodPlus/begoodPlus/__pycache__/urls.cpython-38.pyc
 begoodPlus/stock/__pycache__/admin.cpython-38.pyc
 begoodPlus/stock/__pycache__/models.cpython-38.pyc
 begoodPlus/catalogImages/migrations/0001_initial.py
+begoodPlus/begoodPlus/secrects.py

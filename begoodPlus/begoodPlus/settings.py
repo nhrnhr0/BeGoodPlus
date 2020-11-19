@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+from . import secrects
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -20,8 +21,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '#r*r40h()nfz(8duh2%98n2=2y$!7hd6law4t#_mkht3xafe(c'
-
+#SECRET_KEY = '#r*r40h()nfz(8duh2%98n2=2y$!7hd6law4t#_mkht3xafe(c'
+SECRET_KEY = secrects.SECRET_KEY
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -217,7 +218,8 @@ EMAIL_HOST = 'email-smtp.us-east-2.amazonaws.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
-EMAIL_HOST_USER = 'AKIAWNTXXG5ZM5IBIUEQ'
-EMAIL_HOST_PASSWORD = 'BHJY50/zwukaolno7+fLwJvkxvNT1Q20gUWyWvOzQ1MK'
+EMAIL_HOST_USER = secrects.EMAIL_HOST_USER
+EMAIL_HOST_PASSWORD =  secrects.EMAIL_HOST_PASSWORD
+
 # from django.core.mail import send_mail
 # send_mail(subject='hey', message='message', from_email='bot@ms-global.co.il', recipient_list=['nhrnhr0@gmail.com'])

@@ -835,6 +835,8 @@
                 $form.submit(function(){
                     $.post($(this).attr('action'), $(this).serialize(), function(response){
                         linked_images = [];
+                        console.log(response);
+                        debugger;
                         localStorage.setItem("liked_product", JSON.stringify(linked_images));
                         // redirect to the same url
                         window.location.href = './';

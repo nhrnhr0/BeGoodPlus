@@ -57,6 +57,6 @@ def add_liked_images(request,  *args, **kwargs):
         mail_res = email.send(True)
         #import time
         #time.sleep(4.5)
-        
+        response_data['mail_res'] =  mail_res
         return HttpResponse(json.dumps(response_data), content_type="application/json")
     
